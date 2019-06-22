@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2019/06/22 11:50:21 by astripeb         ###   ########.fr        #
+#    Updated: 2019/06/22 18:41:55 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,26 @@ CFLAGS += -I $(INC_PATH)
 NAME_LIB = libftprintf.a
 MLIB = libmake
 
-SOURCES = random.c
+SOURCES_C = list_func.c push_swap_func.c rev_rotation.c utility_func.c \
+			checker.c
 
-SRCS = $(addprefix $(LIBFT_PATH)/,$(SOURCES_LIBFT))
+SOURCES_S = list_func.c push_swap_func.c rev_rotation.c utility_func.c
 
-OBJ = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
+SRCS_C = $(addprefix $(SRC_PATH)/,$(SOURCES_C))
 
-all: $(NAME_S)
+SRCS_S = $(addprefix $(SRC_PATH)/,$(SOURCES_S))
 
-$(NAME_S): bin # $(OBJ)
+OBJ_C = $(addprefix $(OBJ_PATH)/,$(SOURCES_C:.c=.o))
+
+OBJ_S = $(addprefix $(OBJ_PATH)/,$(SOURCES_S:.c=.o))
+
+all: $(NAME_c)
+
+$(NAME_S): bin $(OBJ_S)
+	$(CC) $(CFLAGS) -L./ -lftprintf $(SRCS_S) main_check.c -o $(NAME_S)
+
+$(NAME_C): bin $(OBJ_C)
+	$(CC) $(CFLAGS) -L./ -lftprintf $(SRCS_C) -o $(NAME_C)
 
 lib:
 	@make -f $(MLIB)
@@ -39,7 +50,7 @@ lib:
 bin:
 	@mkdir -p $(OBJ_PATH)
 
-$(OBJ_PATH)/%.o:$(LIBFT_PATH)/%.c
+$(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 norm:
