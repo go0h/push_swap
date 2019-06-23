@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 15:13:21 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/23 17:54:17 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,19 @@ int			ft_myatoi(char *str)
 		n = n * 10 + (*str++ - '0');
 	}
 	return (n * flag);
+}
+
+int			ft_get_mediana(int ac, char **av)
+{
+	int		n;
+
+	n = 0;
+	if (ac % 2 == 1 && ac != 1)
+		n = ft_myatoi(av[ac / 2]);
+	else if (ac != 1)
+		n = (ft_myatoi(av[ac / 2 - 1]) * ft_myatoi(av[ac / 2])) / 2;
+	else
+		n = ft_myatoi(av[0]);
+	ft_printf("mediana = %d\n", n);
+	return (n);
 }

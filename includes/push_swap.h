@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 14:35:34 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/23 17:54:16 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,10 @@ int				ft_myatoi(char *str);
 int				ft_operation(char *oper, t_stack **stack_a, t_stack **stack_b);
 
 int				ft_check_sort(t_stack *stack_a, t_stack *stack_b);
+
+void			ft_solver(t_stack **stack_a, int mediana);
+
+int				ft_get_last_num(t_stack *stack);
+
+int				ft_get_mediana(int ac, char **av);
 #endif

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:19:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 13:58:42 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/23 17:52:16 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		ft_operation(char *oper, t_stack **stack_a, t_stack **stack_b)
 		ft_rev_rotate_two(stack_a, stack_b);
 	}
 	else
-		return (0);
+		ft_exit(WRONG_OPERATION);
 	return (1);
 }
 
@@ -90,4 +90,11 @@ int		ft_check_sort(t_stack *stack_a, t_stack *stack_b)
 		stack_a = stack_a->next;
 	}
 	return (1);
+}
+
+int		ft_get_last_num(t_stack *stack)
+{
+	while (stack->next)
+		stack = stack->next;
+	return (stack->num);
 }
