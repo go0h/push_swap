@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/22 18:27:36 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/23 14:35:34 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@
 # include "libftprintf.h"
 
 # define MALLOC_FAILURE 2
+# define WRONG_INPUT 3
+# define READ_ERROR 4
+# define WRONG_OPERATION 5
 
 typedef struct	s_stack
 {
 	int				num;
 	struct s_stack	*next;
 }				t_stack;
+
+void			ft_exit(int err);
 
 t_stack			*ft_newlist(int num);
 
@@ -50,5 +55,13 @@ void			ft_rev_rotate(t_stack **stack_a);
 
 void			ft_rev_rotate_two(t_stack **stack_a, t_stack **b);
 
-int				check_arg(int ac, char **av);
+int				ft_check_arg(int ac, char **av);
+
+void			ft_find_dup(t_stack *stack);
+
+int				ft_myatoi(char *str);
+
+int				ft_operation(char *oper, t_stack **stack_a, t_stack **stack_b);
+
+int				ft_check_sort(t_stack *stack_a, t_stack *stack_b);
 #endif

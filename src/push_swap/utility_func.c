@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/22 18:38:54 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:13:21 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		check_arg(int ac, char **av)
+int			ft_check_arg(int ac, char **av)
 {
 	int i;
 	int j;
@@ -25,11 +25,56 @@ int		check_arg(int ac, char **av)
 			++j;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]) || j > 19)
+			if (!ft_isdigit(av[i][j]) || j > 11)
 				return (0);
 			++j;
 		}
 		++i;
 	}
 	return (1);
+}
+
+void		ft_find_dup(t_stack *stack)
+{
+	int		n;
+	int		count;
+	t_stack *first;
+	t_stack	*second;
+
+	first = stack;
+	while (first)
+	{
+		count = 0;
+		n = first->num;
+		second = stack;
+		while (second)
+		{
+			if (n == second->num)
+				++count;
+			second = second->next;
+		}
+		if (count > 1)
+			ft_exit(WRONG_INPUT);
+		first = first->next;
+	}
+}
+
+int			ft_myatoi(char *str)
+{
+	int n;
+	int	flag;
+
+	while (ft_isspace(*str))
+		++str;
+	flag = (*str == '+' || *str == '-') ? (44 - *str++) : 1;
+	n = 0;
+	while (ft_isdigit(*str))
+	{
+		if (flag == 1 && (n * 10 + (*str - '0')) < 0)
+			ft_exit(WRONG_INPUT);
+		if (flag == -1 && (n * -10 - (*str - '0')) > 0)
+			ft_exit(WRONG_INPUT);
+		n = n * 10 + (*str++ - '0');
+	}
+	return (n * flag);
 }
