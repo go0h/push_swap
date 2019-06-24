@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 15:44:38 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 17:54:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/25 00:02:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,18 @@ int		main(int argc, char **argv)
 		--i;
 	}
 	ft_find_dup(stack_a);
-	ft_get_mediana(argc - 1, &argv[1]);
-//	ft_solver(&stack_a, 3);
+	ft_solver(&stack_a, argc - 1, ft_get_mediana(argc - 1, &argv[1]));
 	ft_delstack(&stack_a);
 	return (0);
 }
 
-void		ft_solver(t_stack **stack, int mediana)
+void		ft_solver(t_stack **stack, int len, int mediana)
 {
 	t_stack	*stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_b;
 	char	*line;
 	
-	mediana *= 0;
+	ft_printf("len = %d, mediana = %d\n", len, mediana);
 	line = ft_strnew(0);
 	stack_b = NULL;
 	stack_a = *stack;
@@ -54,6 +53,5 @@ void		ft_solver(t_stack **stack, int mediana)
 		}
 	}
 	ft_printf("%s", line);
-//	ft_printstacks(stack_a, stack_b);
 	*stack = stack_a;
 }

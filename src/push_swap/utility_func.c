@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 17:54:17 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/24 23:25:38 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,23 @@ int			ft_myatoi(char *str)
 
 int			ft_get_mediana(int ac, char **av)
 {
-	int		n;
+	int		*arr;
+	int		i;
 
-	n = 0;
-	if (ac % 2 == 1 && ac != 1)
-		n = ft_myatoi(av[ac / 2]);
-	else if (ac != 1)
-		n = (ft_myatoi(av[ac / 2 - 1]) * ft_myatoi(av[ac / 2])) / 2;
+	if (!(arr = ft_memalloc(sizeof(int) * ac)))
+		ft_exit(MALLOC_FAILURE);
+	i = 0;
+	while (i < ac)
+	{
+		arr[i] = ft_myatoi(av[i]);
+		++i;
+	}
+	if (!(ft_merge_sort(arr, ac)))
+		ft_exit(MALLOC_FAILURE);
+	if (ac % 2 == 1)
+		i = arr[ac / 2];
 	else
-		n = ft_myatoi(av[0]);
-	ft_printf("mediana = %d\n", n);
-	return (n);
+		i = (arr[ac / 2] + arr[ac / 2 + 1]) / 2;
+	free(arr);
+	return (i);
 }
