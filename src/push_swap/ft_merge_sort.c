@@ -6,35 +6,35 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 20:53:37 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/24 23:20:21 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/26 18:38:33 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_sort(int *copy, int *res, int start, int end);
-int		ft_merge(int *res, int *copy, int start, int end);
-void		pa(int *arr, int len);
-
-int		ft_merge_sort(int *arr, int len)
+static int		ft_merge(int *res, int *arr, int start, int end)
 {
-	int	*copy;
 	int	i;
+	int	j;
+	int	mid;
+	int	idx;
 
-	if (!(copy = ft_memalloc(sizeof(int) * len)))
-		return (0);
-	i = 0;
-	while (i < len)
+	mid = (start + end) / 2;
+	i = start;
+	j = mid;
+	idx = start;
+	while (idx < end)
 	{
-		copy[i] = arr[i];
-		++i;
+		if (j >= end || (i < mid && arr[i] < arr[j]))
+			res[idx] = arr[i++];
+		else
+			res[idx] = arr[j++];
+		++idx;
 	}
-	ft_sort(copy, arr, 0, len);
-	free(copy);
-	return (1);
+	return (0);
 }
 
-int		ft_sort(int *arr, int *res, int start, int end)
+static int		ft_sort(int *arr, int *res, int start, int end)
 {
 	int mid;
 
@@ -57,37 +57,20 @@ int		ft_sort(int *arr, int *res, int start, int end)
 	return (0);
 }
 
-int		ft_merge(int *res, int *arr, int start, int end)
+int				ft_merge_sort(int *arr, int len)
 {
+	int	*copy;
 	int	i;
-	int	j;
-	int	mid;
-	int	idx;
-	
-	mid = (start + end) / 2;
-	i = start;
-	j = mid;
-	idx = start;
-	while (idx < end)
-	{
-		if (j >= end || (i < mid && arr[i] < arr[j]))
-			res[idx] = arr[i++];
-		else
-			res[idx] = arr[j++];
-		++idx;
-	}
-	return (0);
-}
 
-void		pa(int *arr, int len)
-{
-	int i;
-	
+	if (!(copy = ft_memalloc(sizeof(int) * len)))
+		return (0);
 	i = 0;
 	while (i < len)
 	{
-		ft_printf("%d ", arr[i]);
+		copy[i] = arr[i];
 		++i;
 	}
-	ft_printf("\n");
+	ft_sort(copy, arr, 0, len);
+	free(copy);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/24 23:25:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/26 21:42:11 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,25 +79,28 @@ int			ft_myatoi(char *str)
 	return (n * flag);
 }
 
-int			ft_get_mediana(int ac, char **av)
+int			ft_get_mediana(t_stack *stack)
 {
 	int		*arr;
 	int		i;
+	int		len;
 
-	if (!(arr = ft_memalloc(sizeof(int) * ac)))
+	len = ft_get_length_stack(stack);
+	if (!(arr = ft_memalloc(sizeof(int) * len)))
 		ft_exit(MALLOC_FAILURE);
 	i = 0;
-	while (i < ac)
+	while (i < len)
 	{
-		arr[i] = ft_myatoi(av[i]);
+		arr[i] = stack->num;
+		stack = stack->next;
 		++i;
 	}
-	if (!(ft_merge_sort(arr, ac)))
+	if (!(ft_merge_sort(arr, len)))
 		ft_exit(MALLOC_FAILURE);
-	if (ac % 2 == 1)
-		i = arr[ac / 2];
+	if (len % 2 == 1)
+		i = arr[len / 2];
 	else
-		i = (arr[ac / 2] + arr[ac / 2 + 1]) / 2;
+		i = ((arr[len / 2 - 1] + arr[len / 2])) / 2;
 	free(arr);
 	return (i);
 }

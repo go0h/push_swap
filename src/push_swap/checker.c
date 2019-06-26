@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 16:07:41 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/26 17:24:32 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		ft_read_instructions(t_stack **stack_a, t_stack **stack_b)
 	}
 	if (n < 0)
 		ft_exit(READ_ERROR);
-	if ((ft_check_sort(*stack_a, *stack_b)) == 1)
+	if (!*stack_b && ft_check_sort(*stack_a) == 1)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

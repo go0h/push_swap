@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:19:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 17:52:16 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/26 21:54:57 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,10 @@ int		ft_operation(char *oper, t_stack **stack_a, t_stack **stack_b)
 	return (1);
 }
 
-int		ft_check_sort(t_stack *stack_a, t_stack *stack_b)
+int		ft_check_sort(t_stack *stack_a)
 {
 	int n;
 
-	if (stack_b)
-		return (0);
 	n = stack_a->num;
 	stack_a = stack_a->next;
 	while (stack_a)
@@ -97,4 +95,49 @@ int		ft_get_last_num(t_stack *stack)
 	while (stack->next)
 		stack = stack->next;
 	return (stack->num);
+}
+
+int		ft_get_length_stack(t_stack *stack)
+{
+	int i;
+
+	i = 0;
+	if (!stack)
+		return (0);
+	while (stack)
+	{
+		++i;
+		stack = stack->next;
+	}
+	return (i);
+}
+
+void	ft_split_med(t_stack **s_a, t_stack **s_b, char **line, int f)
+{
+	int		med;
+	t_stack	*stack_a;
+	int		len;
+
+	stack_a = *s_a;
+	len = ft_get_length_stack(stack_a);
+	len = (len % 2 == 1 && len != 1) ? len / 2 + 1 : len / 2;
+	med = ft_get_mediana(stack_a);
+	while (len)
+	{
+		ft_printstacks(stack_a, *s_b);
+		if (stack_a && stack_a->num <= med)
+		{
+			ft_push(&stack_a, s_b);
+			if (!(*line = ft_strjoin_f(*line, f ? "pb\n" : "pa\n")))
+				ft_exit(MALLOC_FAILURE);
+			--len;
+		}
+		else
+		{
+			ft_rotate(&stack_a);
+			if (!(*line = ft_strjoin_f(*line, f ? "ra\n" : "rb\n")))
+				ft_exit(MALLOC_FAILURE);
+		}
+	}
+	*s_a = stack_a;
 }

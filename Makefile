@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2019/06/24 22:01:42 by astripeb         ###   ########.fr        #
+#    Updated: 2019/06/26 17:27:44 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ bin:
 	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 norm:
 	@norminette $(SRC_PATH)
