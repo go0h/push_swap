@@ -24,10 +24,11 @@ NAME_LIB = libftprintf.a
 MLIB = libmake
 
 SOURCES_C = checker.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c operations.c ft_exit.c ft_merge_sort.c
+			utility_func.c operations.c ft_exit.c ft_merge_sort.c 
 
 SOURCES_S = push_swap.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c ft_exit.c operations.c ft_merge_sort.c
+			utility_func.c ft_exit.c operations.c ft_merge_sort.c \
+			solver.c
 
 SRCS_C = $(addprefix $(SRC_PATH)/,$(SOURCES_C))
 

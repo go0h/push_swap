@@ -111,33 +111,3 @@ int		ft_get_length_stack(t_stack *stack)
 	}
 	return (i);
 }
-
-void	ft_split_med(t_stack **s_a, t_stack **s_b, char **line, int f)
-{
-	int		med;
-	t_stack	*stack_a;
-	int		len;
-
-	stack_a = *s_a;
-	len = ft_get_length_stack(stack_a);
-	len = (len % 2 == 1 && len != 1) ? len / 2 + 1 : len / 2;
-	med = ft_get_mediana(stack_a);
-	while (len)
-	{
-		ft_printstacks(stack_a, *s_b);
-		if (stack_a && stack_a->num <= med)
-		{
-			ft_push(&stack_a, s_b);
-			if (!(*line = ft_strjoin_f(*line, f ? "pb\n" : "pa\n")))
-				ft_exit(MALLOC_FAILURE);
-			--len;
-		}
-		else
-		{
-			ft_rotate(&stack_a);
-			if (!(*line = ft_strjoin_f(*line, f ? "ra\n" : "rb\n")))
-				ft_exit(MALLOC_FAILURE);
-		}
-	}
-	*s_a = stack_a;
-}
