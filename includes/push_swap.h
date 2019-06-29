@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/29 13:44:08 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/29 17:13:09 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int				ft_myatoi(char *str);
 
 int				ft_operation(char *oper, t_stack **stack_a, t_stack **stack_b);
 
-int				ft_check_sort(t_stack *stack_a);
+int				ft_check_sort(t_stack *stack_a, int len);
 
 void			ft_solver(t_stack **stack_a);
 
@@ -85,6 +85,10 @@ t_vals			*ft_gen_vals(t_stack *stack);
 
 int				ft_merge_sort(int *arr, int len);
 
-void			ft_split_med(t_stack **stack_a, t_stack **stack_b,\
-				t_vals *val_s);
+int				ft_split_med_a(t_stack **s_a, t_stack **s_b, t_vals *val, int len);
+
+int				ft_basic_case(t_stack *s, t_vals *val, int len);
+
+//void			ft_split_med(t_stack **stack_a, t_stack **stack_b,\
+//				t_vals *val_s);
 #endif

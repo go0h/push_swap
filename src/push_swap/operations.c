@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:19:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/29 11:57:19 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/29 16:17:05 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,21 @@ int		ft_operation(char *oper, t_stack **stack_a, t_stack **stack_b)
 	return (1);
 }
 
-int		ft_check_sort(t_stack *stack_a)
+int		ft_check_sort(t_stack *stack_a, int len)
 {
 	int n;
+	int i;
 
+	i = 0;
 	n = stack_a->num;
 	stack_a = stack_a->next;
-	while (stack_a)
+	while (stack_a && i < len)
 	{
 		if (n >= stack_a->num)
 			return (0);
 		n = stack_a->num;
 		stack_a = stack_a->next;
+		++i;
 	}
 	return (1);
 }
