@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/26 21:42:11 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/29 13:56:07 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			ft_check_arg(int ac, char **av)
 	int j;
 
 	i = 0;
-	while (i < ac)
+	while (i < ac && av[i])
 	{
 		j = 0;
 		if (av[i][j] == '-')
@@ -79,13 +79,11 @@ int			ft_myatoi(char *str)
 	return (n * flag);
 }
 
-int			ft_get_mediana(t_stack *stack)
+int			ft_get_mediana(t_stack *stack, int len)
 {
 	int		*arr;
 	int		i;
-	int		len;
 
-	len = ft_get_length_stack(stack);
 	if (!(arr = ft_memalloc(sizeof(int) * len)))
 		ft_exit(MALLOC_FAILURE);
 	i = 0;
@@ -103,4 +101,17 @@ int			ft_get_mediana(t_stack *stack)
 		i = ((arr[len / 2 - 1] + arr[len / 2])) / 2;
 	free(arr);
 	return (i);
+}
+
+t_vals		*ft_gen_vals(t_stack *stack)
+{
+	t_vals *val_s;
+
+	if (!(val_s = (t_vals*)malloc(sizeof(val_s))))
+		ft_exit(MALLOC_FAILURE);
+	if (!(val_s->line = ft_strnew(0)))
+		ft_exit(MALLOC_FAILURE);
+	val_s->len = ft_get_length_stack(stack);
+	val_s->med = ft_get_mediana(stack, val_s->len);
+	return (val_s);
 }

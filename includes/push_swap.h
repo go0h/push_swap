@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/26 20:32:33 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/29 13:44:08 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct	s_stack
 	struct s_stack	*next;
 }				t_stack;
 
+typedef struct	s_vals
+{
+	int				len;
+	int				med;
+	char			*line;
+}				t_vals;
+
 void			ft_exit(int err);
 
 t_stack			*ft_newlist(int num);
@@ -41,19 +48,20 @@ void			ft_printstack(t_stack *begin);
 
 void			ft_printstacks(t_stack *stack_a, t_stack *stack_b);
 
-void			ft_swap(t_stack *stack_a);
+void			ft_swap(t_stack *stack_a, t_vals *val, char *op);
 
-void			ft_swap_two(t_stack *stack_a, t_stack *stack_b);
+void			ft_swap_two(t_stack *a, t_stack *b, t_vals *val, char *op);
 
-void			ft_push(t_stack **stack_a, t_stack **stack_b);
+void			ft_push(t_stack **a, t_stack **b, t_vals *val, char *op);
 
-void			ft_rotate(t_stack **stack_a);
+void			ft_rotate(t_stack **stack_a, t_vals *val, char *op);
 
-void			ft_rotate_two(t_stack **stack_a, t_stack **stack_b);
+void			ft_rotate_two(t_stack **a, t_stack **b, t_vals *val, char *op);
 
-void			ft_rev_rotate(t_stack **stack_a);
+void			ft_rev_rotate(t_stack **stack_a, t_vals *val, char *op);
 
-void			ft_rev_rotate_two(t_stack **stack_a, t_stack **b);
+void			ft_rev_rotate_two(t_stack **a, t_stack **b,\
+				t_vals *val, char *op);
 
 int				ft_check_arg(int ac, char **av);
 
@@ -71,9 +79,12 @@ int				ft_get_last_num(t_stack *stack);
 
 int				ft_get_length_stack(t_stack *stack);
 
-int				ft_get_mediana(t_stack *stack);
+int				ft_get_mediana(t_stack *stack, int len);
+
+t_vals			*ft_gen_vals(t_stack *stack);
 
 int				ft_merge_sort(int *arr, int len);
 
-void			ft_split_med(t_stack **stack_a, t_stack **stack_b, char **line, int f);
+void			ft_split_med(t_stack **stack_a, t_stack **stack_b,\
+				t_vals *val_s);
 #endif
