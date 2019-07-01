@@ -6,57 +6,100 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/02 00:05:35 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/06/29 18:05:12 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_quick_sort(t_ps *stacks, char cur_s, int len);
+//void		ft_get_half_stack(t_stack **s_a, t_stack **s_b, t_vals *val_s);;
+int			ft_split_med_b(t_stack **s_a, t_stack **s_b, t_vals *val, int len);
 
-void		ft_solver(t_stack *stack_a)
+void		ft_solver(t_stack **stack)
 {
-	t_ps	*stacks;
-
-	if (!(stacks = (t_ps*)malloc(sizeof(t_ps))))
-		ft_exit(MALLOC_FAILURE);
-	stacks->a = stack_a;
-	stacks->b = NULL;
-	if (!(stacks->line = ft_strnew(0)))
-		ft_exit(MALLOC_FAILURE);
-	stacks->cur = 'a';
-	ft_quick_sort(t_ps *stacks, 'a', ft_get_length_stack(stacks->a));
-	ft_printstacks(stacks->a, stacks->b);
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	t_vals	*val;
+	
+	stack_b = NULL;
+	stack_a = *stack;
+	val = ft_gen_vals(stack_a);
+	ft_split_med_a(&stack_a, &stack_b, val, val->len);
+	*stack = stack_a;
+	ft_printstacks(stack_a, stack_b);
 }
 
-int			ft_quick_sort(t_ps *stacks, char cur_s, int len)
+int			ft_split_med_a(t_stack **s_a, t_stack **s_b, t_vals *val, int len)
 {
-	int	med;
-	int	half;
-	int	i;
-	t_stack	*cur;
+	t_stack	*stack_a;
+	int		med;
+	int		i;
 
-	
-	if (ft_basic_case(cur_s == 'a' ? stacks->a : stacks->b, len) == 1)
-		return (1);
-	half = 0;
-	med = ft_get_mediana(*s_a, len);
-	i = 0;
-	while (i < len)
+	i = 0;	
+	stack_a = *s_a;
+	ft_printf("split_a: len = %d\n", len);
+	if (ft_basic_case(&stack_a, val, len) == 1)
 	{
-		if ((*s_a)->num > med)
+		while (len > 0)
 		{
-			ft_push(s_a, s_b, val, "pb\n");
-			++half;
+			ft_rotate(&stack_a, val, "ra\n");
+			--len;
+		}
+		return (1);
+	}
+	med = ft_get_mediana(stack_a, len);
+	while (i < len / 2)
+	{
+		if (stack_a && stack_a->num <= med)
+		{
+			ft_push(&stack_a, s_b, val, "pb\n");
+			++i;
 		}
 		else
-			ft_rotate(s_a, val, "ra\n");
-		++i;
+			ft_rotate(&stack_a, val, "ra\n");
 	}
+	*s_a = stack_a;
+	val->len /= 2;
+	ft_split_med_b(s_a, s_b, val, val->len);
+	ft_split_med_a(s_a, s_b, val, val->len);
+	return (0);
+}
+
+int			ft_split_med_b(t_stack **s_a, t_stack **s_b, t_vals *val, int len)
+{
+	t_stack	*stack_b;
+	int		med;
+	int		i;
+
+	i = 0;
+	stack_b = *s_b;
 	ft_printstacks(*s_a, *s_b);
-//	ft_printf("len = %d, half = %d\n", len, half);
-	ft_quick_sort(s_b, s_a, val, half);
-	ft_quick_sort(s_a, s_b, val, len - half);
+	ft_printf("split_b: len = %d\n", len);
+	if (ft_basic_case(&stack_b,  val, len) == 1)
+	{
+		ft_printstacks(*s_a, *s_b);
+		while (--len)
+		{
+			ft_push(&stack_b, s_a, val, "pa\n");
+			ft_rotate(s_a, val, "ra\n");
+		}
+		return (1);
+	}
+	med = ft_get_mediana(stack_b, len);
+	while (i < len / 2)
+	{
+		if (stack_b && stack_b->num >= med)
+		{
+			ft_push(&stack_b, s_a, val, "pa\n");
+			++i;
+		}
+		else
+			ft_rotate(&stack_b, val, "rb\n");
+	}
+	*s_b = stack_b;
+	val->len /= 2;
+	ft_split_med_a(s_a, s_b, val, val->len);
+	ft_split_med_b(s_a, s_b, val, val->len);
 	return (0);
 }
 
@@ -66,20 +109,15 @@ int			ft_basic_case(t_stack **s_a, t_vals *val, int len)
 
 	a = *s_a;
 	if (len == 1)
-	{
-//		ft_printf("len = %d\n", len);
 		return (1);
-	}
 	else if (len == 2)
 	{
-//		ft_printf("len = %d\n", len);
 		if (a->num > a->next->num)
 			ft_swap(a, val, "sa\n");
 		return (1);
 	}
 	else if (len == 3)
 	{
-//		ft_printf("len = %d\n", len);
 		if (a->num > a->next->num && a->next->num < a->next->next->num)
 			ft_swap(a, val, "sa\n");
 		else if (a->num > a->next->num && a->next->num > a->next->next->num)

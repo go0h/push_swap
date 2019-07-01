@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/29 17:13:09 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/01 23:54:24 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ typedef struct	s_vals
 	int				med;
 	char			*line;
 }				t_vals;
+
+typedef struct	s_ps;
+{
+	t_stack	*a;
+	t_stack	*b;
+	char		*line;
+	char		cur;
+
+}					t_ps;
 
 void			ft_exit(int err);
 
