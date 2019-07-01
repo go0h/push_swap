@@ -87,8 +87,8 @@ int				ft_merge_sort(int *arr, int len);
 
 int				ft_split_med_a(t_stack **s_a, t_stack **s_b, t_vals *val, int len);
 
-int				ft_basic_case(t_stack *s, t_vals *val, int len);
+int				ft_basic_case(t_stack **a, t_vals *val, int len);
 
-//void			ft_split_med(t_stack **stack_a, t_stack **stack_b,\
+//void			ft_split_med(t_stack **stack_a, t_stack **stack_b,
 //				t_vals *val_s);
 #endif

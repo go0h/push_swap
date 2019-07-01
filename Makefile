@@ -41,10 +41,10 @@ OBJ_S = $(addprefix $(OBJ_PATH)/,$(SOURCES_S:.c=.o))
 all: $(NAME_c)
 
 $(NAME_S): bin $(OBJ_S)
-	$(CC) $(CFLAGS) $(SRCS_S)  -L./ -lftprintf -o $(NAME_S)
+	$(CC) $(CFLAGS) $(OBJ_S)  -L./ -lftprintf -o $(NAME_S)
 
 $(NAME_C): bin $(OBJ_C)
-	$(CC) $(CFLAGS) $(SRCS_C) -L./ -lftprintf -o $(NAME_C)
+	$(CC) $(CFLAGS) $(OBJ_C) -L./ -lftprintf -o $(NAME_C)
 
 lib:
 	@make -f $(MLIB)
