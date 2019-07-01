@@ -6,26 +6,26 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/29 16:18:54 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/02 00:45:25 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void		ft_read_instructions(t_stack **stack_a, t_stack **stack_b)
+static void		ft_read_instructions(t_ps *stacks)
 {
 	int		n;
 	char	*line;
 
 	while ((n = get_next_line(0, &line)) > 0)
 	{
-		if (!(ft_operation(line, stack_a, stack_b)))
+		if (!(ft_operation(stacks, line)))
 			ft_exit(WRONG_OPERATION);
-		ft_printstacks(*stack_a, *stack_b);
+		ft_printstacks(stacks->a, stacks->b);
 	}
 	if (n < 0)
 		ft_exit(READ_ERROR);
-	if (!*stack_b && ft_check_sort(*stack_a, ft_get_length_stack(*stack_a)))
+	if (!stacks->b && ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
@@ -33,12 +33,13 @@ static void		ft_read_instructions(t_stack **stack_a, t_stack **stack_b)
 
 int				main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_ps		*stacks;
 	int		i;
 
-	stack_a = NULL;
-	stack_b = NULL;
+	if (!(stacks = (t_ps*)malloc(sizeof(t_ps))))
+		ft_exit(MALLOC_FAILURE);
+	stacks->a = NULL;
+	stacks->b = NULL;
 	if (argc == 1)
 		return (0);
 	if (!(ft_check_arg(argc - 1, &argv[1])))
@@ -46,10 +47,10 @@ int				main(int argc, char **argv)
 	i = argc - 1;
 	while (i > 0)
 	{
-		ft_addnew(&stack_a, ft_myatoi(argv[i]));
+		ft_addnew(&stacks->a, ft_myatoi(argv[i]));
 		--i;
 	}
-	ft_find_dup(stack_a);
-	ft_read_instructions(&stack_a, &stack_b);
+	ft_find_dup(stacks->a);
+	ft_read_instructions(stacks);
 	return (0);
 }
