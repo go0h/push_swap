@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2019/06/26 17:27:44 by astripeb         ###   ########.fr        #
+#    Updated: 2019/07/02 22:36:25 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SOURCES_C = checker.c list_func.c push_swap_func.c rev_rotation.c \
 
 SOURCES_S = push_swap.c list_func.c push_swap_func.c rev_rotation.c \
 			utility_func.c ft_exit.c operations.c ft_merge_sort.c \
-			solver.c
+			solver.c special_cases.c
 
 SRCS_C = $(addprefix $(SRC_PATH)/,$(SOURCES_C))
 
