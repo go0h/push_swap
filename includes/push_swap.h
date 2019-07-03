@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/02 22:35:51 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/03 22:37:02 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ int				ft_check_sort(t_stack *stack_a, int len);
 
 void			ft_solver(t_stack **stack_a);
 
-int				ft_get_last_num(t_stack *stack);
-
 int				ft_get_length_stack(t_stack *stack);
 
 int				ft_get_mediana(t_stack *stack, int len);
@@ -99,7 +97,9 @@ int				ft_basic_case(t_ps *stacks, char cur_s, int len);
 
 int				ft_sort_three(t_ps *stacks, char cur);
 
-void			ft_go_to_home(t_ps *stacks, char cur, int len);
+int				ft_sort_three_on_stack(t_ps *stacks, char cur);
+
+void				ft_post_processing(t_ps *stacks);
 
 //void			ft_split_med(t_stack **stack_a, t_stack **stack_b,
 //				t_vals *val_s);

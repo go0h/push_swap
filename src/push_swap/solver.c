@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/03 00:40:29 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/03 23:33:02 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void		ft_solver(t_stack **stack_a)
 		ft_exit(MALLOC_FAILURE);
 	stacks->cur = 'a';
 	ft_quick_sort_a(stacks, ft_get_length_stack(stacks->a));
-//	ft_printf("%s", stacks->line);
+//	ft_post_processing(stacks);
+	ft_printf("%s", stacks->line);
 	ft_printstacks(stacks->a, stacks->b);
 	*stack_a = stacks->a;
 }

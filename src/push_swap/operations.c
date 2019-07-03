@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:19:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/02 01:02:06 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/03 23:30:55 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,6 @@ int		ft_check_sort(t_stack *stack_a, int len)
 	return (1);
 }
 
-int		ft_get_last_num(t_stack *stack)
-{
-	while (stack->next)
-		stack = stack->next;
-	return (stack->num);
-}
-
 int		ft_get_length_stack(t_stack *stack)
 {
 	int i;
@@ -113,4 +106,32 @@ int		ft_get_length_stack(t_stack *stack)
 		stack = stack->next;
 	}
 	return (i);
+}
+
+void		ft_post_processing(t_ps *stacks)
+{
+	char		*temp;
+	char		*line;
+	int		i;
+	int		j;
+
+	line = stacks->line;
+	if (!(temp = ft_strnew(ft_strlen(line))))
+		ft_exit(MALLOC_FAILURE);
+	i = 0;
+	j = 0;
+	while (line[i] != '\0')
+	{
+		if (ft_strncmp(&line[i], "sa\nsb", 5) && ft_strncmp(&line[i], "ra\nrb", 5))
+			temp[j++] = line[i++];
+		else
+		{
+			ft_strcpy(&temp[j], line[i] == 's' ? "ss\n" : "rr\n");
+			i += 6;
+			j += 3;
+		}
+	}
+	temp[j] = '\0';
+	free(line);
+	stacks->line = temp;
 }
