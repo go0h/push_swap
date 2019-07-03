@@ -99,6 +99,8 @@ int				ft_basic_case(t_ps *stacks, char cur_s, int len);
 
 int				ft_sort_three(t_ps *stacks, char cur);
 
+void			ft_go_to_home(t_ps *stacks, char cur, int len);
+
 //void			ft_split_med(t_stack **stack_a, t_stack **stack_b,
 //				t_vals *val_s);
 #endif

@@ -21,8 +21,7 @@ int			ft_basic_case(t_ps *stacks, char cur, int len)
 		ft_swap(stacks, cur);
 	else if (len == 3)
 		ft_sort_three(stacks, cur);
-	if ((!ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)) && !stacks->b)
-			|| stacks->b)
+	if ((!ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)) || !stacks->b))
 	{
 		while (len--)
 		{
@@ -31,7 +30,7 @@ int			ft_basic_case(t_ps *stacks, char cur, int len)
 		}
 		return (0);
 	}
-	return (1);
+	return (0);
 }
 
 int		ft_sort_three(t_ps *stacks, char cur)

@@ -67,7 +67,7 @@ void	ft_rotate(t_ps *stacks, char cur)
 {
 	t_stack *temp;
 	int		first_num;
-	
+
 //	ft_printf("rorate %c\n", cur);
 	temp = cur == 'a' ? stacks->a : stacks->b;
 	if (temp)

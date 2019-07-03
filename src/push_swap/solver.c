@@ -12,7 +12,8 @@
 
 #include "push_swap.h"
 
-int		ft_quick_sort(t_ps *stacks, char cur_s, int len);
+int			ft_quick_sort_a(t_ps *stacks, int len);
+int			ft_quick_sort_b(t_ps *stacks, int len);
 
 void		ft_solver(t_stack **stack_a)
 {
@@ -25,35 +26,72 @@ void		ft_solver(t_stack **stack_a)
 	if (!(stacks->line = ft_strnew(0)))
 		ft_exit(MALLOC_FAILURE);
 	stacks->cur = 'a';
-	ft_quick_sort(stacks, 'a', ft_get_length_stack(stacks->a));
+	ft_quick_sort_a(stacks, ft_get_length_stack(stacks->a));
 //	ft_printf("%s", stacks->line);
 	ft_printstacks(stacks->a, stacks->b);
 	*stack_a = stacks->a;
 }
 
-int			ft_quick_sort(t_ps *stacks, char cur, int len)
+int			ft_quick_sort_a(t_ps *stacks, int len)
+{
+	int	med;
+	int	half;
+	int	i;
+	
+	if (len <= 3)
+		return (ft_basic_case(stacks, 'a', len));
+	med = ft_get_mediana(stacks->a, len);
+	half = 0;
+	i = 0;
+	while (i < len)
+	{
+		if (stacks->a->num <= med)
+		{
+			ft_push(stacks, 'b');
+			++half;
+		}
+		else
+			ft_rotate(stacks, 'a');
+		++i;
+	}
+	while (i - half)
+	{
+		ft_rev_rotate(stacks, 'a');
+		--i;
+	}
+	ft_quick_sort_b(stacks, half);
+	ft_quick_sort_a(stacks, len - half);
+	return (0);
+}
+
+int			ft_quick_sort_b(t_ps *stacks, int len)
 {
 	int	med;
 	int	half;
 	int	i;
 	
 	if (len >= 0 && len <= 3)
-		return (ft_basic_case(stacks, cur, len));
+		return (ft_basic_case(stacks, 'b', len));
 	half = 0;
-	med = ft_get_mediana(cur == 'a' ? stacks->a : stacks->b, len);
+	med = ft_get_mediana(stacks->b, len);
 	i = 0;
 	while (i < len)
 	{
-		if ((cur == 'a' ? stacks->a->num : stacks->b->num) >= med)
+		if (stacks->b->num <= med)
 		{
-			ft_push(stacks, cur == 'a' ? 'b' : 'a');
+			ft_push(stacks, 'a');
 			++half;
 		}
 		else
-			ft_rotate(stacks, cur);
+			ft_rotate(stacks, 'b');
 		++i;
 	}
-	ft_quick_sort(stacks, cur, len - half);
-	ft_quick_sort(stacks, cur == 'a' ? 'b' : 'a', half);
+	while (i - half)
+	{
+		ft_rev_rotate(stacks, 'b');
+		--i;
+	}
+	ft_quick_sort_a(stacks, half);
+	ft_quick_sort_b(stacks, len - half);
 	return (0);
 }
