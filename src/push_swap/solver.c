@@ -55,10 +55,13 @@ int			ft_quick_sort_a(t_ps *stacks, int len)
 			ft_rotate(stacks, 'a');
 		++i;
 	}
-	while (i - half)
+	if (ft_get_length_stack(stacks->a) != len - half)
 	{
-		ft_rev_rotate(stacks, 'a');
-		--i;
+		while (i - half)
+		{
+			ft_rev_rotate(stacks, 'a');
+			--i;
+		}
 	}
 	ft_quick_sort_b(stacks, half);
 	ft_quick_sort_a(stacks, len - half);
@@ -87,10 +90,13 @@ int			ft_quick_sort_b(t_ps *stacks, int len)
 			ft_rotate(stacks, 'b');
 		++i;
 	}
-	while (i - half)
+	if (ft_get_length_stack(stacks->b) != len - half)
 	{
-		ft_rev_rotate(stacks, 'b');
-		--i;
+		while (i - half)
+		{
+			ft_rev_rotate(stacks, 'b');
+			--i;
+		}
 	}
 	ft_quick_sort_a(stacks, half);
 	ft_quick_sort_b(stacks, len - half);
