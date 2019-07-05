@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/03 00:05:31 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/05 20:13:12 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ static void		ft_read_instructions(t_ps *stacks)
 {
 	int		n;
 	char	*line;
-
+	
+	line = NULL;
 	while ((n = get_next_line(0, &line)) > 0)
 	{
-		if (!(ft_operation(stacks, line)))
+		if (!(ft_operation(stacks, line, 0)))
 			ft_exit(WRONG_OPERATION);
-		ft_printstacks(stacks->a, stacks->b);
+		free(line);
 	}
 	if (n < 0)
 		ft_exit(READ_ERROR);
@@ -45,12 +46,13 @@ int				main(int argc, char **argv)
 {
 	t_ps		*stacks;
 	char		**ar;
-	int		i;
+	int			i;
 
 	if (!(stacks = (t_ps*)malloc(sizeof(t_ps))))
 		ft_exit(MALLOC_FAILURE);
 	stacks->a = NULL;
 	stacks->b = NULL;
+	stacks->line = NULL;
 	if (argc == 1)
 		return (0);
 	else if (argc == 2)

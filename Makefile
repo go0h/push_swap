@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2019/07/02 22:36:25 by astripeb         ###   ########.fr        #
+#    Updated: 2019/07/05 20:12:36 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SOURCES_C = checker.c list_func.c push_swap_func.c rev_rotation.c \
 
 SOURCES_S = push_swap.c list_func.c push_swap_func.c rev_rotation.c \
 			utility_func.c ft_exit.c operations.c ft_merge_sort.c \
-			solver.c special_cases.c
+			solver.c special_cases.c post_processing.c
 
 SRCS_C = $(addprefix $(SRC_PATH)/,$(SOURCES_C))
 
@@ -41,10 +41,10 @@ OBJ_S = $(addprefix $(OBJ_PATH)/,$(SOURCES_S:.c=.o))
 all: $(NAME_c)
 
 $(NAME_S): bin $(OBJ_S)
-	$(CC) $(CFLAGS) -g $(OBJ_S)  -L./ -lftprintf -o $(NAME_S)
+	$(CC) $(CFLAGS) $(OBJ_S)  -L./ -lftprintf -o $(NAME_S)
 
 $(NAME_C): bin $(OBJ_C)
-	$(CC) $(CFLAGS) -g $(OBJ_C) -L./ -lftprintf -o $(NAME_C)
+	$(CC) $(CFLAGS) $(OBJ_C) -L./ -lftprintf -o $(NAME_C)
 
 lib:
 	@make -f $(MLIB)

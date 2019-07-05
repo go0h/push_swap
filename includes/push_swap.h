@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/03 22:37:02 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/05 18:30:02 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ typedef struct	s_vals
 
 typedef struct	s_ps
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack		*a;
+	t_stack		*b;
 	char		*line;
-	char		cur;
+	int			med;
 
 }					t_ps;
 
@@ -77,7 +77,7 @@ void			ft_find_dup(t_stack *stack);
 
 int				ft_myatoi(char *str);
 
-int				ft_operation(t_ps *stacks, char *oper);
+int				ft_operation(t_ps *stacks, char *oper, int flag);
 
 int				ft_check_sort(t_stack *stack_a, int len);
 
@@ -91,15 +91,15 @@ t_vals			*ft_gen_vals(t_stack *stack);
 
 int				ft_merge_sort(int *arr, int len);
 
-//int				ft_split_med_a(t_stack **s_a, t_stack **s_b, t_vals *val, int len);
-
 int				ft_basic_case(t_ps *stacks, char cur_s, int len);
 
 int				ft_sort_three(t_ps *stacks, char cur);
 
 int				ft_sort_three_on_stack(t_ps *stacks, char cur);
 
-void				ft_post_processing(t_ps *stacks);
+void			ft_post_processing(t_ps *stacks);
+
+void			ft_pre_solver(t_ps *stacks);
 
 //void			ft_split_med(t_stack **stack_a, t_stack **stack_b,
 //				t_vals *val_s);

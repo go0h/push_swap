@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:02:38 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/02 23:20:05 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/05 21:20:44 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_swap(t_ps *stacks, char cur)
 {
 	int		temp;
 	t_stack	*list;
-	
-//	ft_printf("swap %c\n", cur);
+
+	ft_printf("swap %c\n", cur);
 	list = cur == 'a' ? stacks->a : stacks->b;
 	if (list && list->next)
 	{
@@ -28,7 +28,7 @@ void	ft_swap(t_ps *stacks, char cur)
 	if (!(stacks->line = ft_strjoin_f(stacks->line,\
 		cur == 'a' ? "sa\n" : "sb\n")))
 		ft_exit(MALLOC_FAILURE);
-//	ft_printstacks(stacks->a, stacks->b);
+	ft_printstacks(stacks->a, stacks->b);
 }
 
 void	ft_swap_two(t_ps *stacks)
@@ -44,7 +44,7 @@ void	ft_push(t_ps *stacks, char cur)
 
 	a = cur == 'b' ? stacks->a : stacks->b;
 	b = cur == 'b' ? stacks->b : stacks->a;
-//	ft_printf("push %c\n", cur);
+	ft_printf("push %c\n", cur);
 	if (a && b)
 	{
 		ft_addnew(&b, a->num);
@@ -60,7 +60,7 @@ void	ft_push(t_ps *stacks, char cur)
 		ft_exit(MALLOC_FAILURE);
 	stacks->a = cur == 'b' ? a : b;
 	stacks->b = cur == 'b' ? b : a;
-//	ft_printstacks(stacks->a, stacks->b);
+	ft_printstacks(stacks->a, stacks->b);
 }
 
 void	ft_rotate(t_ps *stacks, char cur)
@@ -68,7 +68,7 @@ void	ft_rotate(t_ps *stacks, char cur)
 	t_stack *temp;
 	int		first_num;
 
-//	ft_printf("rorate %c\n", cur);
+	ft_printf("rorate %c\n", cur);
 	temp = cur == 'a' ? stacks->a : stacks->b;
 	if (temp)
 	{
@@ -83,7 +83,7 @@ void	ft_rotate(t_ps *stacks, char cur)
 	if (!(stacks->line = ft_strjoin_f(stacks->line,\
 		cur == 'a' ? "ra\n" : "rb\n")))
 		ft_exit(MALLOC_FAILURE);
-//	ft_printstacks(stacks->a, stacks->b);
+	ft_printstacks(stacks->a, stacks->b);
 }
 
 void	ft_rotate_two(t_ps *stacks)
