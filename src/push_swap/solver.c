@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/05 21:54:03 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 00:07:58 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void		ft_solver(t_stack **stack_a)
 	if (!ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)))
 		ft_quick_sort_a(stacks, ft_get_length_stack(stacks->a));
 	ft_post_processing(stacks);
-//	ft_printf("%s", stacks->line);
+	ft_printf("%s", stacks->line);
 	*stack_a = stacks->a;
-	if (ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)))
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
+//	if (ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)))
+//		ft_printf("OK\n");
+//	else
+//		ft_printf("KO\n");
 }
 
 int			ft_quick_sort_a(t_ps *stacks, int len)
@@ -79,13 +79,16 @@ int			ft_quick_sort_b(t_ps *stacks, int len)
 		if (stacks->b->num >= stacks->med)
 		{
 			ft_push(stacks, 'a');
+			stacks->a->num == stacks->med ? ft_rotate(stacks, 'a') : 0;
 			++half;
 		}
 		else
 			ft_rotate(stacks, 'b');
 	}
+	ft_rev_rotate(stacks, 'a');
 	ft_quick_sort_b(stacks, len - half);
-	ft_quick_sort_a(stacks, half);
+	ft_rotate(stacks, 'a');
+	ft_quick_sort_a(stacks, half - 1);
 	return (0);
 }
 
