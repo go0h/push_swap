@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/05 18:30:02 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 14:42:36 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,22 @@ typedef struct	s_stack
 	struct s_stack	*next;
 }				t_stack;
 
-typedef struct	s_vals
-{
-	int				len;
-	int				med;
-	char			*line;
-}				t_vals;
-
 typedef struct	s_ps
 {
 	t_stack		*a;
 	t_stack		*b;
 	char		*line;
 	int			med;
+	int			max;
+	int			min;
+	int			count;
+}				t_ps;
 
-}					t_ps;
+void			ft_exit(t_ps **stacks, int err);
 
-void			ft_exit(int err);
+/*
+** list funcitons
+*/
 
 t_stack			*ft_newlist(int num);
 
@@ -53,23 +52,35 @@ void			ft_delonelist(t_stack **begin);
 
 void			ft_delstack(t_stack **begin);
 
+/*
+** debug funcitons
+*/
+
 void			ft_printstack(t_stack *begin);
 
 void			ft_printstacks(t_stack *a, t_stack *b);
 
-void			ft_swap(t_ps *stacks, char cur_s);
+/*
+** push_swap operations
+*/
 
-void			ft_swap_two(t_ps *stacks);
+int				ft_swap(t_ps *stacks, char cur_s);
 
-void			ft_push(t_ps *stacks, char cur_s);
+int				ft_swap_two(t_ps *stacks);
 
-void			ft_rotate(t_ps *stacks, char cur_s);
+int				ft_push(t_ps *stacks, char cur_s);
 
-void			ft_rotate_two(t_ps *stacks);
+int				ft_rotate(t_ps *stacks, char cur_s);
 
-void			ft_rev_rotate(t_ps *stacks, char cur_s);
+int				ft_rotate_two(t_ps *stacks);
 
-void			ft_rev_rotate_two(t_ps *stacks);
+int				ft_rev_rotate(t_ps *stacks, char cur_s);
+
+int				ft_rev_rotate_two(t_ps *stacks);
+
+/*
+** valid arguments functions
+*/
 
 int				ft_check_arg(int ac, char **av);
 
@@ -77,30 +88,46 @@ void			ft_find_dup(t_stack *stack);
 
 int				ft_myatoi(char *str);
 
-int				ft_operation(t_ps *stacks, char *oper, int flag);
-
 int				ft_check_sort(t_stack *stack_a, int len);
 
-void			ft_solver(t_stack **stack_a);
+/*
+** algorithm functions
+*/
 
 int				ft_get_length_stack(t_stack *stack);
 
 int				ft_get_mediana(t_stack *stack, int len);
 
-t_vals			*ft_gen_vals(t_stack *stack);
-
-int				ft_merge_sort(int *arr, int len);
-
 int				ft_basic_case(t_ps *stacks, char cur_s, int len);
 
 int				ft_sort_three(t_ps *stacks, char cur);
 
-int				ft_sort_three_on_stack(t_ps *stacks, char cur);
+void			ft_solver(t_stack **stack_a);
+
+int				ft_merge_sort(int *arr, int len);
+
+/*
+** quick sort algorithm functions
+*/
+
+int				ft_sort_a(t_ps *stacks, int len);
+
+int				ft_sort_b(t_ps *stacks, int len);
+
+/*
+** insertion sort algrithm functions
+*/
+
+int				ft_insert_sort(t_ps *stacks, int len);
+
+/*
+** post algorithm functions
+*/
 
 void			ft_post_processing(t_ps *stacks);
 
-void			ft_pre_solver(t_ps *stacks);
+int				ft_operation(t_ps *stacks, char *oper, int flag);
 
-//void			ft_split_med(t_stack **stack_a, t_stack **stack_b,
-//				t_vals *val_s);
+void			ft_free_stacks(t_ps ** to_del);
+
 #endif

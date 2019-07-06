@@ -6,13 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:02:38 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 00:07:22 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 17:34:10 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_ps *stacks, char cur)
+int		ft_swap(t_ps *stacks, char cur)
 {
 	int		temp;
 	t_stack	*list;
@@ -27,43 +27,44 @@ void	ft_swap(t_ps *stacks, char cur)
 	}
 	if (!(stacks->line = ft_strjoin_f(stacks->line,\
 		cur == 'a' ? "sa\n" : "sb\n")))
-		ft_exit(MALLOC_FAILURE);
+		ft_exit(&stacks, MALLOC_FAILURE);
 //	ft_printstacks(stacks->a, stacks->b);
+	return (1);
 }
 
-void	ft_swap_two(t_ps *stacks)
+int		ft_swap_two(t_ps *stacks)
 {
 	ft_swap(stacks, 'a');
 	ft_swap(stacks, 'b');
+	return (1);
 }
 
-void	ft_push(t_ps *stacks, char cur)
+int		ft_push(t_ps *stacks, char cur)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack *temp;
 
-	a = cur == 'b' ? stacks->a : stacks->b;
-	b = cur == 'b' ? stacks->b : stacks->a;
 //	ft_printf("push %c\n", cur);
-	if (a && b)
+	temp = cur == 'a' ? stacks->b : stacks->a;
+	if (cur == 'a' && stacks->b)
 	{
-		ft_addnew(&b, a->num);
-		ft_delonelist(&a);
+		stacks->b ? stacks->b = stacks->b->next : 0;
+		temp->next = stacks->a;
+		stacks->a = temp;
 	}
-	else if (a && !b)
+	else if (cur == 'b' && stacks->a)
 	{
-		b = ft_newlist(a->num);
-		ft_delonelist(&a);
+		stacks->a ? stacks->a = stacks->a->next : 0;
+		temp->next = stacks->b;
+		stacks->b = temp;
 	}
 	if (!(stacks->line = ft_strjoin_f(stacks->line,\
 		cur == 'a' ? "pa\n" : "pb\n")))
-		ft_exit(MALLOC_FAILURE);
-	stacks->a = cur == 'b' ? a : b;
-	stacks->b = cur == 'b' ? b : a;
+		ft_exit(&stacks, MALLOC_FAILURE);
 //	ft_printstacks(stacks->a, stacks->b);
+	return (1);
 }
 
-void	ft_rotate(t_ps *stacks, char cur)
+int		ft_rotate(t_ps *stacks, char cur)
 {
 	t_stack *temp;
 	int		first_num;
@@ -82,12 +83,14 @@ void	ft_rotate(t_ps *stacks, char cur)
 	}
 	if (!(stacks->line = ft_strjoin_f(stacks->line,\
 		cur == 'a' ? "ra\n" : "rb\n")))
-		ft_exit(MALLOC_FAILURE);
+		ft_exit(&stacks, MALLOC_FAILURE);
 //	ft_printstacks(stacks->a, stacks->b);
+	return (1);
 }
 
-void	ft_rotate_two(t_ps *stacks)
+int		ft_rotate_two(t_ps *stacks)
 {
 	ft_rotate(stacks, 'a');
 	ft_rotate(stacks, 'b');
+	return (1);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2019/07/05 20:12:36 by astripeb         ###   ########.fr        #
+#    Updated: 2019/07/06 16:30:31 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,12 @@ NAME_LIB = libftprintf.a
 MLIB = libmake
 
 SOURCES_C = checker.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c operations.c ft_exit.c ft_merge_sort.c 
+			utility_func.c utility_func2.c operations.c ft_exit.c \
+			ft_merge_sort.c 
 
 SOURCES_S = push_swap.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c ft_exit.c operations.c ft_merge_sort.c \
-			solver.c special_cases.c post_processing.c
+			utility_func.c utility_func2.c ft_exit.c ft_merge_sort.c \
+			solver.c insert_sort.c special_cases.c post_processing.c
 
 SRCS_C = $(addprefix $(SRC_PATH)/,$(SOURCES_C))
 
@@ -38,7 +39,7 @@ OBJ_C = $(addprefix $(OBJ_PATH)/,$(SOURCES_C:.c=.o))
 
 OBJ_S = $(addprefix $(OBJ_PATH)/,$(SOURCES_S:.c=.o))
 
-all: $(NAME_c)
+all: $(NAME_C) $(NAME_S)
 
 $(NAME_S): bin $(OBJ_S)
 	$(CC) $(CFLAGS) $(OBJ_S)  -L./ -lftprintf -o $(NAME_S)

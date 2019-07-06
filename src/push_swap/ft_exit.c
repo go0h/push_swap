@@ -6,14 +6,15 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:31:01 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 16:37:08 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 12:29:23 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_exit(int err)
+void		ft_exit(t_ps **stacks, int err)
 {
+	ft_free_stacks(stacks);
 	if (err == MALLOC_FAILURE)
 		ft_fprintf(2, "Failed to allocate memory.\n");
 	else if (err == WRONG_INPUT)

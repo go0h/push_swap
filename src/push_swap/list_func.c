@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 12:27:55 by astripeb          #+#    #+#             */
-/*   Updated: 2019/06/23 15:03:54 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 12:21:14 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack		*ft_newlist(int num)
 	t_stack *new;
 
 	if (!(new = (t_stack*)malloc(sizeof(t_stack))))
-		ft_exit(MALLOC_FAILURE);
+		return (NULL);
 	new->num = num;
 	new->next = NULL;
 	return (new);
@@ -31,11 +31,18 @@ void		ft_addnew(t_stack **begin, int num)
 	if (*begin)
 	{
 		temp = *begin;
-		new = ft_newlist(num);
+		if (!(new = ft_newlist(num)))
+		{
+			ft_delstack(begin);
+			ft_exit(NULL, MALLOC_FAILURE);
+		}
 		new->next = temp;
 	}
-	else
-		new = ft_newlist(num);
+	else if (!(new = ft_newlist(num)))
+	{
+		ft_delstack(begin);
+		ft_exit(NULL, MALLOC_FAILURE);
+	}
 	*begin = new;
 }
 

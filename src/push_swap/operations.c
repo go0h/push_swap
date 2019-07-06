@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:19:28 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/05 20:29:23 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 11:51:46 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,38 +72,4 @@ int		ft_operation(t_ps *stacks, char *oper, int flag)
 	else
 		ft_exit(WRONG_OPERATION);
 	return (1);
-}
-
-int		ft_check_sort(t_stack *stack_a, int len)
-{
-	int n;
-	int i;
-
-	i = 0;
-	n = stack_a->num;
-	stack_a = stack_a->next;
-	while (stack_a && i < len)
-	{
-		if (n >= stack_a->num)
-			return (0);
-		n = stack_a->num;
-		stack_a = stack_a->next;
-		++i;
-	}
-	return (1);
-}
-
-int		ft_get_length_stack(t_stack *stack)
-{
-	int i;
-
-	i = 0;
-	if (!stack)
-		return (0);
-	while (stack)
-	{
-		++i;
-		stack = stack->next;
-	}
-	return (i);
 }

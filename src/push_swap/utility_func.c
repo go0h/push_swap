@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/05 15:10:05 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 17:09:54 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		ft_find_dup(t_stack *stack)
 			second = second->next;
 		}
 		if (count > 1)
-			ft_exit(WRONG_INPUT);
+			ft_exit(NULL, WRONG_INPUT);
 		first = first->next;
 	}
 }
@@ -71,9 +71,9 @@ int			ft_myatoi(char *str)
 	while (ft_isdigit(*str))
 	{
 		if (flag == 1 && (n * 10 + (*str - '0')) < 0)
-			ft_exit(WRONG_INPUT);
+			ft_exit(NULL, WRONG_INPUT);
 		if (flag == -1 && (n * -10 - (*str - '0')) > 0)
-			ft_exit(WRONG_INPUT);
+			ft_exit(NULL, WRONG_INPUT);
 		n = n * 10 + (*str++ - '0');
 	}
 	return (n * flag);
@@ -85,7 +85,7 @@ int			ft_get_mediana(t_stack *stack, int len)
 	int		i;
 
 	if (!(arr = ft_memalloc(sizeof(int) * len)))
-		ft_exit(MALLOC_FAILURE);
+		ft_exit(NULL, MALLOC_FAILURE);
 	i = 0;
 	while (i < len)
 	{
@@ -94,24 +94,30 @@ int			ft_get_mediana(t_stack *stack, int len)
 		++i;
 	}
 	if (!(ft_merge_sort(arr, len)))
-		ft_exit(MALLOC_FAILURE);
-	if (len % 2 == 1)
+		ft_exit(NULL, MALLOC_FAILURE);
+	if (len % 2 == 0)
 		i = arr[len / 2];
 	else
-		i = ((arr[len / 2 - 1] + arr[len / 2])) / 2;
+		i = arr[len / 2 + 1];
 	free(arr);
 	return (i);
 }
 
-t_vals		*ft_gen_vals(t_stack *stack)
+int		ft_check_sort(t_stack *stack_a, int len)
 {
-	t_vals *val_s;
+	int n;
+	int i;
 
-	if (!(val_s = (t_vals*)malloc(sizeof(val_s))))
-		ft_exit(MALLOC_FAILURE);
-	if (!(val_s->line = ft_strnew(0)))
-		ft_exit(MALLOC_FAILURE);
-	val_s->len = ft_get_length_stack(stack);
-	val_s->med = ft_get_mediana(stack, val_s->len);
-	return (val_s);
+	i = 0;
+	n = stack_a->num;
+	stack_a = stack_a->next;
+	while (stack_a && i < len)
+	{
+		if (n >= stack_a->num)
+			return (0);
+		n = stack_a->num;
+		stack_a = stack_a->next;
+		++i;
+	}
+	return (1);
 }

@@ -6,35 +6,13 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/05 21:54:01 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/06 13:05:19 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			ft_basic_case(t_ps *stacks, char cur, int len)
-{
-	t_stack	*a;
-
-	a = cur == 'a' ? stacks->a : stacks->b;
-	if (len == 2 && a->num > a->next->num)
-		ft_swap(stacks, cur);
-	else if (len == 3)
-		ft_get_length_stack(a) == 3 ? ft_sort_three(stacks, cur) :\
-		ft_sort_three_on_stack(stacks, cur);
-	if ((!ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)) || stacks->b))
-	{
-		while (len--)
-		{
-			cur == 'b' ? ft_push(stacks, 'a') : 0;
-			ft_rotate(stacks, 'a');
-		}
-		return (1);
-	}
-	return (0);
-}
-
-int		ft_sort_three_on_stack(t_ps *stacks, char cur)
+static int	ft_sort_three_on_stack(t_ps *stacks, char cur)
 {
 	t_stack	*a;
 	int		flag;
@@ -63,10 +41,10 @@ int		ft_sort_three_on_stack(t_ps *stacks, char cur)
 	return (1);
 }
 
-int		ft_sort_three(t_ps *stacks, char cur)
+int	ft_sort_three(t_ps *stacks, char cur)
 {
 	t_stack	*a;
-	
+
 	a = cur == 'a' ? stacks->a : stacks->b;
 	if (ft_check_sort(a, 3) == 1)
 		return (1);
@@ -85,6 +63,24 @@ int		ft_sort_three(t_ps *stacks, char cur)
 	{
 		ft_swap(stacks, cur);
 		ft_rev_rotate(stacks, cur);
+	}
+	return (1);
+}
+
+int			ft_basic_case(t_ps *stacks, char cur, int len)
+{
+	t_stack	*a;
+
+	a = cur == 'a' ? stacks->a : stacks->b;
+	if (len == 2 && a->num > a->next->num)
+		ft_swap(stacks, cur);
+	else if (len == 3)
+		ft_get_length_stack(a) == 3 ? ft_sort_three(stacks, cur) :\
+		ft_sort_three_on_stack(stacks, cur);
+	while (len--)
+	{
+		cur == 'b' ? ft_push(stacks, 'a') : 0;
+		ft_rotate(stacks, 'a');
 	}
 	return (1);
 }
