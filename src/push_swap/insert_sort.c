@@ -27,7 +27,6 @@ int			ft_insert_sort(t_ps *stacks, int len)
 	ft_keep_three(stacks);
 	while (--len)
 	{
-		ft_min_max(stacks, 'b');
 		i = ft_count_to_max(stacks, 'b');
 		next_max = ft_get_next_max(stacks, 'b');
 		while (stacks->count > 0)
@@ -36,7 +35,8 @@ int			ft_insert_sort(t_ps *stacks, int len)
 			{
 				ft_push(stacks, 'a');
 				j += stacks->a->num == stacks->min ? ft_rotate(stacks, 'a') : 0;
-				i < 0 ? stacks->count += 1 : 0;
+				i = ft_count_to_max(stacks, 'b');
+				++stacks->count;
 			}
 			else
 				i < 0 ? ft_rev_rotate(stacks, 'b') : ft_rotate(stacks, 'b');
@@ -54,7 +54,7 @@ void		ft_keep_three(t_ps *stacks)
 {
 	int		len;
 	int		i;
-
+	
 	len = ft_get_length_stack(stacks->a);
 	while (len > 3)
 	{
@@ -64,7 +64,7 @@ void		ft_keep_three(t_ps *stacks)
 		{
 			if (stacks->a->num <= stacks->med)
 			{
-				stacks->a->num != stacks->min ? ft_push(stacks, 'b') : 0;
+				ft_push(stacks, 'b');
 				i += stacks->b->num == stacks->med ? ft_rotate(stacks, 'b') : 0;
 			}
 			else
@@ -126,6 +126,7 @@ int		ft_count_to_max(t_ps *stacks, char cur)
 	int		i;
 	int		len;
 
+	ft_min_max(stacks, cur);
 	temp = cur == 'a' ? stacks->a : stacks->b;
 	len = ft_get_length_stack(temp);
 	i = 0;
