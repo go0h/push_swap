@@ -70,6 +70,6 @@ int		ft_operation(t_ps *stacks, char *oper, int flag)
 		ft_rotate_two(stacks);
 	}
 	else
-		ft_exit(WRONG_OPERATION);
+		ft_exit(&stacks, WRONG_OPERATION);
 	return (1);
 }

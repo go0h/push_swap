@@ -15,24 +15,27 @@
 void		ft_keep_three(t_ps *stacks);
 int			ft_min_max(t_ps *stacks, char cur);
 int			ft_count_to_max(t_ps *stacks, char cur);
+int			ft_get_next_max(t_ps *stacks, char cur);
 
 int			ft_insert_sort(t_ps *stacks, int len)
 {
 	int i;
 	int j;
+	int	next_max;
 
 	j = 0;
 	ft_keep_three(stacks);
-	while (len > 1)
+	while (--len)
 	{
 		ft_min_max(stacks, 'b');
 		i = ft_count_to_max(stacks, 'b');
+		next_max = ft_get_next_max(stacks, 'b');
 		while (stacks->count > 0)
 		{
-			if (stacks->b->num == stacks->min)
+			if (stacks->b->num == stacks->min || stacks->b->num == next_max)
 			{
 				ft_push(stacks, 'a');
-				j += ft_rotate(stacks, 'a');
+				j += stacks->a->num == stacks->min ? ft_rotate(stacks, 'a') : 0;
 				i < 0 ? stacks->count += 1 : 0;
 			}
 			else
@@ -41,7 +44,6 @@ int			ft_insert_sort(t_ps *stacks, int len)
 		}
 		ft_push(stacks, 'a');
 		stacks->a->num > stacks->a->next->num ? ft_swap(stacks, 'a') : 0;
-		--len;
 	}
 	while (j--)
 		ft_rev_rotate(stacks, 'a');
@@ -51,21 +53,53 @@ int			ft_insert_sort(t_ps *stacks, int len)
 void		ft_keep_three(t_ps *stacks)
 {
 	int		len;
-	
+	int		i;
+
 	len = ft_get_length_stack(stacks->a);
 	while (len > 3)
 	{
 		stacks->med = ft_get_mediana(stacks->a, len);
-		while (len--)
+		i = 0;
+		while (len)
 		{
 			if (stacks->a->num <= stacks->med)
-				ft_push(stacks, 'b');
+			{
+				stacks->a->num != stacks->min ? ft_push(stacks, 'b') : 0;
+				i += stacks->b->num == stacks->med ? ft_rotate(stacks, 'b') : 0;
+			}
 			else
 				ft_rotate(stacks, 'a');
+			--len;
 		}
+		i > 0 ? ft_rev_rotate(stacks, 'b') : 0;
 		len = ft_get_length_stack(stacks->a);
 	}
-	ft_sort_three(stacks, 'a');
+	ft_basic_case(stacks, 'a', len);
+}
+
+int		ft_get_next_max(t_ps *stacks, char cur)
+{
+	t_stack *first;
+	t_stack *second;
+	int		count;
+	int		next_max;
+	
+	first = cur == 'a' ? stacks->a : stacks->b;
+	while (first)
+	{
+		count = 0;
+		next_max = first->num;
+		second = cur == 'a' ? stacks->a : stacks->b;
+		while (second)
+		{
+			count += next_max < second->num;
+			second = second->next;
+		}
+		first = first->next;
+		if (count == 1)
+			break ;
+	}
+	return (next_max);
 }
 
 int		ft_min_max(t_ps *stacks, char cur)

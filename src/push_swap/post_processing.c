@@ -47,7 +47,7 @@ void		ft_post_processing(t_ps *stacks)
 
 	line = stacks->line;
 	if (!(temp = ft_strnew(ft_strlen(line))))
-		ft_exit(MALLOC_FAILURE);
+		ft_exit(&stacks, MALLOC_FAILURE);
 	i = 0;
 	while (*line)
 	{
