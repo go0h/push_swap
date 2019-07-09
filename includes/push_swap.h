@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 14:42:36 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/09 22:44:46 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int				ft_sort_three(t_ps *stacks, char cur);
 void			ft_solver(t_stack **stack_a);
 
 int				ft_merge_sort(int *arr, int len);
+
+int				ft_min_max(t_ps *stacks, char cur);
 
 /*
 ** quick sort algorithm functions

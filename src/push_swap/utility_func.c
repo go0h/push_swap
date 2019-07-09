@@ -6,7 +6,7 @@
 /*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 17:09:54 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/09 23:41:02 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ int			ft_get_mediana(t_stack *stack, int len)
 	}
 	if (!(ft_merge_sort(arr, len)))
 		ft_exit(NULL, MALLOC_FAILURE);
-	if (len % 2 == 0)
-		i = arr[len / 2];
-	else
+//	if (len % 2 == 0)
+//		i = arr[len / 2];
+//	else
 		i = arr[len / 2 + 1];
 	free(arr);
 	return (i);
