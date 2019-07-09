@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 12:40:15 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 17:47:01 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/09 22:23:37 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,20 @@ int		ft_keep_three(t_ps *stacks)
 	{
 		stacks->med = ft_get_mediana(stacks->a, len);
 		ft_min_max(stacks, 'a');
-		while (len)
+		while (len--)
 		{
-			if (stacks->a->num <= stacks->med)
+			if (stacks->a->num < stacks->med)
 			{
 				ft_push(stacks, 'b');
-				stacks->b->num == stacks->min ? ft_rotate(stacks, 'b') : 0;
-				stacks->b->num == stacks->med ? ft_rotate(stacks, 'b') : 0;
+				if (stacks->b->num == stacks->min)
+				{
+					ft_rotate(stacks, 'b');
+					ft_min_max(stacks, 'a');
+				}
 			}
 			else
 				ft_rotate(stacks, 'a');
-			--len;
 		}
-		ft_rev_rotate(stacks, 'b');
 		len = ft_get_length_stack(stacks->a);
 	}
 	ft_basic_case(stacks, 'a', len);
