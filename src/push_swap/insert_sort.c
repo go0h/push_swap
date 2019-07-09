@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void		ft_keep_three(t_ps *stacks);
+int			ft_keep_three(t_ps *stacks);
 int			ft_min_max(t_ps *stacks, char cur);
 int			ft_count_to_max(t_ps *stacks, char cur);
 int			ft_get_next_max(t_ps *stacks, char cur);
@@ -23,8 +23,7 @@ int			ft_insert_sort(t_ps *stacks, int len)
 	int j;
 	int	next_max;
 
-	j = 0;
-	ft_keep_three(stacks);
+	j = ft_keep_three(stacks);
 	while (--len)
 	{
 		i = ft_count_to_max(stacks, 'b');
@@ -50,31 +49,32 @@ int			ft_insert_sort(t_ps *stacks, int len)
 	return (1);
 }
 
-void		ft_keep_three(t_ps *stacks)
+int		ft_keep_three(t_ps *stacks)
 {
 	int		len;
-	int		i;
-	
+
 	len = ft_get_length_stack(stacks->a);
 	while (len > 3)
 	{
 		stacks->med = ft_get_mediana(stacks->a, len);
-		i = 0;
+		ft_min_max(stacks, 'a');
 		while (len)
 		{
 			if (stacks->a->num <= stacks->med)
 			{
 				ft_push(stacks, 'b');
-				i += stacks->b->num == stacks->med ? ft_rotate(stacks, 'b') : 0;
+				stacks->b->num == stacks->min ? ft_rotate(stacks, 'b') : 0;
+				stacks->b->num == stacks->med ? ft_rotate(stacks, 'b') : 0;
 			}
 			else
 				ft_rotate(stacks, 'a');
 			--len;
 		}
-		i > 0 ? ft_rev_rotate(stacks, 'b') : 0;
+		ft_rev_rotate(stacks, 'b');
 		len = ft_get_length_stack(stacks->a);
 	}
 	ft_basic_case(stacks, 'a', len);
+	return (0);
 }
 
 int		ft_get_next_max(t_ps *stacks, char cur)
