@@ -22,7 +22,7 @@ int			ft_insert_sort(t_ps *stacks, int len)
 	int i;
 	int j;
 	int	next_max;
-
+	
 	j = ft_keep_three(stacks);
 	while (--len)
 	{
@@ -60,7 +60,7 @@ int		ft_keep_three(t_ps *stacks)
 		ft_min_max(stacks, 'a');
 		while (len--)
 		{
-			if (stacks->a->num < stacks->med)
+			if (stacks->a->num <= stacks->med)
 			{
 				ft_push(stacks, 'b');
 				if (stacks->b->num == stacks->min)

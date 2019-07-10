@@ -29,7 +29,7 @@ void		ft_solver(t_stack **stack_a)
 		else
 			ft_sort_a(stacks, ft_get_length_stack(stacks->a));
 	}
-//	ft_post_processing(stacks);
+	ft_post_processing(stacks);
 	ft_printf("%s", stacks->line);
 //	ft_printstacks(stacks->a, stacks->b);
 /*	if (ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)))

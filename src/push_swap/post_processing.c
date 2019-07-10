@@ -39,6 +39,13 @@ static int	check_rev_rotate(char *dest, char *src)
 	return (1);
 }
 
+static int	check_push(char *src)
+{
+	if (ft_strncmp(src, "pa\npb", 5) && ft_strncmp(src, "pb\npa", 5))
+		return (0);
+	return (1);
+}
+
 void		ft_post_processing(t_ps *stacks)
 {
 	char	*temp;
@@ -56,6 +63,8 @@ void		ft_post_processing(t_ps *stacks)
 			i += 2;
 			line += 5;
 		}
+		else if (check_push(line))
+			line += 6;
 		else if (check_rev_rotate(&temp[i], line))
 		{
 			i += 3;
