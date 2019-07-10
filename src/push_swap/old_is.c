@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 12:40:15 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/10 22:11:39 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/09 22:23:37 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ int		ft_keep_three(t_ps *stacks)
 			if (stacks->a->num <= stacks->med)
 			{
 				ft_push(stacks, 'b');
-				stacks->b->num == stacks->min ? ft_rotate(stacks, 'b') : 0;
-				ft_min_max(stacks, 'a');
+				if (stacks->b->num == stacks->min)
+				{
+					ft_rotate(stacks, 'b');
+					ft_min_max(stacks, 'a');
+				}
 			}
 			else
 				ft_rotate(stacks, 'a');

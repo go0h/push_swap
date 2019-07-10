@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 00:08:09 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:06:20 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 void		ft_solver(t_stack **stack_a)
 {
 	t_ps	*stacks;
-	int	len;
 
 	if (!(stacks = (t_ps*)malloc(sizeof(t_ps))))
 		ft_exit(NULL, MALLOC_FAILURE);
 	stacks->a = *stack_a;
 	stacks->b = NULL;
-	stacks->i = 0;
-	len = ft_get_length_stack(*stack_a);
-	if (!(stacks->line = ft_strnew(len * len)))
+	if (!(stacks->line = ft_strnew(0)))
 		ft_exit(&stacks, MALLOC_FAILURE);
-	if (!ft_check_sort(stacks->a, len))
+	if (!ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)))
 	{
-//		if (len <= 100)
-//			ft_insert_sort(stacks, len);
+//		if (ft_get_length_stack(stacks->a) <= 100)
+//			ft_insert_sort(stacks, ft_get_length_stack(stacks->a));
 //		else
-			ft_sort_a(stacks, len);
+			ft_sort_a(stacks, ft_get_length_stack(stacks->a));
 	}
 	ft_post_processing(stacks);
-/*	if (ft_check_sort(stacks->a, len))
+	ft_printf("%s", stacks->line);
+//	ft_printstacks(stacks->a, stacks->b);
+/*	if (ft_check_sort(stacks->a, ft_get_length_stack(stacks->a)))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
@@ -53,6 +52,7 @@ int			ft_sort_a(t_ps *stacks, int len)
 	ft_min_max(stacks, 'a');
 	while (i--)
 	{
+		
 		if (stacks->a->num <= stacks->med)
 			half += ft_push(stacks, 'b');
 		else

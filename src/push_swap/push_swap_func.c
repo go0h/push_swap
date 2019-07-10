@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:02:38 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 17:34:10 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/10 23:36:35 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		ft_swap(t_ps *stacks, char cur)
 	int		temp;
 	t_stack	*list;
 
-//	ft_printf("swap %c\n", cur);
 	list = cur == 'a' ? stacks->a : stacks->b;
 	if (list && list->next)
 	{
@@ -25,9 +24,8 @@ int		ft_swap(t_ps *stacks, char cur)
 		list->num = list->next->num;
 		list->next->num = temp;
 	}
-	if (!(stacks->line = ft_strjoin_f(stacks->line,\
-		cur == 'a' ? "sa\n" : "sb\n")))
-		ft_exit(&stacks, MALLOC_FAILURE);
+	stacks->line[stacks->i] = cur == 'a' ? SA : SB;
+	stacks->i += 1;
 //	ft_printstacks(stacks->a, stacks->b);
 	return (1);
 }
@@ -57,10 +55,8 @@ int		ft_push(t_ps *stacks, char cur)
 		temp->next = stacks->b;
 		stacks->b = temp;
 	}
-	if (!(stacks->line = ft_strjoin_f(stacks->line,\
-		cur == 'a' ? "pa\n" : "pb\n")))
-		ft_exit(&stacks, MALLOC_FAILURE);
-//	ft_printstacks(stacks->a, stacks->b);
+	stacks->line[stacks->i] = cur == 'a' ? PA : PB;
+	stacks->i += 1;
 	return (1);
 }
 
@@ -81,9 +77,8 @@ int		ft_rotate(t_ps *stacks, char cur)
 		}
 		temp->num = first_num;
 	}
-	if (!(stacks->line = ft_strjoin_f(stacks->line,\
-		cur == 'a' ? "ra\n" : "rb\n")))
-		ft_exit(&stacks, MALLOC_FAILURE);
+	stacks->line[stacks->i] = cur == 'a' ? RA : RB;
+	stacks->i += 1;
 //	ft_printstacks(stacks->a, stacks->b);
 	return (1);
 }

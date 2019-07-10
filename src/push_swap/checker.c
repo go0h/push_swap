@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 12:24:28 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/10 23:50:25 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				main(int argc, char **argv)
 		ft_exit(NULL, MALLOC_FAILURE);
 	stacks->a = NULL;
 	stacks->b = NULL;
-	stacks->line = NULL;
+	stacks->i = 0;
 	argc == 1 ? exit(0) : 0;
 	if (argc == 2)
 	{
@@ -65,6 +65,8 @@ int				main(int argc, char **argv)
 	if (!(ft_check_arg(argc - 1, ar)))
 		ft_exit(&stacks, WRONG_INPUT);
 	i = argc != 2 ? argc - 2 : ft_len_arr(ar) - 1;
+	if (!(stacks->line = ft_strnew(i * i)))
+		ft_exit(&stacks, MALLOC_FAILURE);
 	while (i >= 0)
 		ft_addnew(&stacks->a, ft_myatoi(ar[i--]));
 	ft_find_dup(stacks->a);

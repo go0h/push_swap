@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/09 22:44:46 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/10 23:08:25 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 # define READ_ERROR 4
 # define WRONG_OPERATION 5
 
+# define SA 1
+# define SB 2
+# define PA 4
+# define PB 5
+# define RA 6
+# define RB 7
+# define RRA 9
+# define RRB 10
+
 typedef struct	s_stack
 {
 	int				num;
@@ -31,7 +40,8 @@ typedef struct	s_ps
 {
 	t_stack		*a;
 	t_stack		*b;
-	char		*line;
+	char			*line;
+	int			i;
 	int			med;
 	int			max;
 	int			min;
