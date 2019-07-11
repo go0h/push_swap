@@ -1,0 +1,18 @@
+operations: 16 
+233 811 855 477 337 
+
+operations: 15 
+347 199 557 819 938 
+
+operations: 16 
+759 63 510 301 152 
+
+operations: 13 
+485 125 151 454 109 
+
+operations: 16 
+783 93 193 708 183 
+
+operations: 16 
+468 126 745 437 261 
+

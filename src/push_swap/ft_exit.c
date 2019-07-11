@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:31:01 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 12:29:23 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 19:42:27 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void		ft_exit(t_ps **stacks, int err)
 {
 	ft_free_stacks(stacks);
-	if (err == MALLOC_FAILURE)
+	if (err == USAGE_C)
+		ft_fprintf(2, "usage: ./checker [digit_1 ... digit_n]\n");
+	if (err == USAGE_P)
+		ft_fprintf(2, "usage: ./push_swap [digit_1 ... digit_n]\n");
+	else if (err == MALLOC_FAILURE)
 		ft_fprintf(2, "Failed to allocate memory.\n");
 	else if (err == WRONG_INPUT)
 		ft_fprintf(2, "Error\n");

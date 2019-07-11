@@ -6,53 +6,47 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 19:12:26 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 00:02:55 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 19:24:29 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int			ft_check_combo(char *s, int i, int j)
+{
+	int		flag;
+
+	flag = 0;
+	if ((s[i] == SA && s[j] == SB) || (s[i] == SB && s[j] == SB))
+		flag = ft_putstr("ss\n");
+	if ((s[i] == RA && s[j] == RB) || (s[i] == RB && s[j] == RA))
+		flag = ft_putstr("rr\n");
+	if ((s[i] == RRA && s[j] == RRB) || (s[i] == RRB && s[j] == RRA))
+		flag = ft_putstr("rrr\n");
+	if ((s[i] == RRA && s[j] == RRB) || (s[i] == RRB && s[j] == RRA))
+		flag = ft_putstr("rrr\n");
+	if ((s[i] == PA && s[j] == PB) || (s[i] == PB && s[j] == PA))
+		flag = 1;
+	if ((s[i] == RA && s[j] == RRA) || (s[i] == RB && s[j] == RRB))
+		flag = 1;
+	if ((s[i] == RRA && s[j] == RA) || (s[i] == RRB && s[j] == RB))
+		flag = 1;
+	return (flag ? 1 : 0);
+}
+
 void		ft_post_processing(t_ps *stacks)
 {
 	int		i;
-	char		*line;
+	char	*line;
 
 	line = stacks->line;
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if ((line[i] == SA && line[i + 1] == SB) || (line[i] == SB && line[i + 1] == SB))
-		{
-			write(1, "ss\n", 3);
-			i += 2;
-			continue;
-		}
-		if ((line[i] == RA && line[i + 1] == RB) || (line[i] == RB && line[i + 1] == RA))
-		{
-			write(1, "rr\n", 3);
-			i += 2;
-			continue;
-		}
-		if ((line[i] == RRA && line[i + 1] == RRB) || (line[i] == RRB && line[i + 1] == RRA))
-		{
-			write(1, "rrr\n", 4);
-			i += 2;
-			continue;
-		}
-		if ((line[i] == PA && line[i + 1] == PB) || (line[i] == PB && line[i + 1] == PA))
+		if (ft_check_combo(line, i, i + 1))
 		{
 			i += 2;
-			continue;
-		}
-		if ((line[i] == RA && line[i + 1] == RRA) || (line[i] == RB && line[i + 1] == RRB))
-		{
-			i += 2;
-			continue;
-		}
-		if ((line[i] == RRA && line[i + 1] == RA) || (line[i] == RRB && line[i + 1] == RB))
-		{
-			i += 2;
-			continue;
+			continue ;
 		}
 		line[i] == SA ? write(1, "sa\n", 3) : 0;
 		line[i] == SB ? write(1, "sb\n", 3) : 0;

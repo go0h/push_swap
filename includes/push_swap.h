@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/10 23:08:25 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:19:38 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@
 # include <stdio.h>
 # include "libftprintf.h"
 
-# define MALLOC_FAILURE 2
-# define WRONG_INPUT 3
-# define READ_ERROR 4
-# define WRONG_OPERATION 5
-
 # define SA 1
 # define SB 2
-# define PA 4
-# define PB 5
-# define RA 6
-# define RB 7
-# define RRA 9
-# define RRB 10
+# define PA 3
+# define PB 4
+# define RA 5
+# define RB 6
+# define RRA 7
+# define RRB 8
+
+# define USAGE_P 9
+# define USAGE_C 10
+# define WRONG_INPUT 11
+# define READ_ERROR 12
+# define WRONG_OPERATION 13
 
 typedef struct	s_stack
 {
@@ -40,7 +41,7 @@ typedef struct	s_ps
 {
 	t_stack		*a;
 	t_stack		*b;
-	char			*line;
+	char		*line;
 	int			i;
 	int			med;
 	int			max;
@@ -61,6 +62,8 @@ void			ft_addnew(t_stack **begin, int num);
 void			ft_delonelist(t_stack **begin);
 
 void			ft_delstack(t_stack **begin);
+
+t_ps			*ft_init_stacks(int ac, char **av);
 
 /*
 ** debug funcitons
@@ -92,11 +95,13 @@ int				ft_rev_rotate_two(t_ps *stacks);
 ** valid arguments functions
 */
 
+int				ft_len_arr(char **arr);
+
 int				ft_check_arg(int ac, char **av);
 
 void			ft_find_dup(t_stack *stack);
 
-int				ft_myatoi(char *str);
+int				ft_myatoi(char *str, t_ps *stacks);
 
 int				ft_check_sort(t_stack *stack_a, int len);
 
@@ -106,15 +111,13 @@ int				ft_check_sort(t_stack *stack_a, int len);
 
 int				ft_get_length_stack(t_stack *stack);
 
-int				ft_get_mediana(t_stack *stack, int len);
+int				ft_get_mediana(t_stack *stack, int len, int flag);
 
-int				ft_basic_case(t_ps *stacks, char cur_s, int len);
+int				ft_basic_case(t_ps *stacks, char cur, int len);
 
 int				ft_sort_three(t_ps *stacks, char cur);
 
-void			ft_solver(t_stack **stack_a);
-
-int				ft_merge_sort(int *arr, int len);
+void			ft_solver(int ac, char **av);
 
 int				ft_min_max(t_ps *stacks, char cur);
 
@@ -127,10 +130,10 @@ int				ft_sort_a(t_ps *stacks, int len);
 int				ft_sort_b(t_ps *stacks, int len);
 
 /*
-** insertion sort algrithm functions
+** selection sort algrithm functions
 */
 
-int				ft_insert_sort(t_ps *stacks, int len);
+void			ft_select_sort(t_ps *stacks, int len);
 
 /*
 ** post algorithm functions
@@ -138,8 +141,8 @@ int				ft_insert_sort(t_ps *stacks, int len);
 
 void			ft_post_processing(t_ps *stacks);
 
-int				ft_operation(t_ps *stacks, char *oper, int flag);
+int				ft_operation(t_ps *stacks, char *oper);
 
-void			ft_free_stacks(t_ps ** to_del);
+void			ft_free_stacks(t_ps **to_del);
 
 #endif

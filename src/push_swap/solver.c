@@ -6,29 +6,25 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 00:08:09 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:34:04 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_solver(t_stack **stack_a)
+void		ft_solver(int ac, char **av)
 {
 	t_ps	*stacks;
-	int	len;
+	int		len;
 
-	if (!(stacks = (t_ps*)malloc(sizeof(t_ps))))
-		ft_exit(NULL, MALLOC_FAILURE);
-	stacks->a = *stack_a;
-	stacks->b = NULL;
-	stacks->i = 0;
-	len = ft_get_length_stack(*stack_a);
-	if (!(stacks->line = ft_strnew(len * len)))
-		ft_exit(&stacks, MALLOC_FAILURE);
+	stacks = ft_init_stacks(ac, av);
+	len = ft_get_length_stack(stacks->a);
 	if (!ft_check_sort(stacks->a, len))
 	{
-		if (len <= 100)
-			ft_insert_sort(stacks, len);
+		if (len == 3)
+			ft_sort_three(stacks, 'a');
+		else if (len <= 150)
+			ft_select_sort(stacks, len);
 		else
 			ft_sort_a(stacks, len);
 	}
@@ -44,7 +40,7 @@ int			ft_sort_a(t_ps *stacks, int len)
 	if (len <= 3)
 		return (ft_basic_case(stacks, 'a', len));
 	half = 0;
-	stacks->med = ft_get_mediana(stacks->a, len);
+	stacks->med = ft_get_mediana(stacks->a, len, 1);
 	i = len;
 	ft_min_max(stacks, 'a');
 	while (i--)
@@ -70,7 +66,7 @@ int			ft_sort_b(t_ps *stacks, int len)
 	if (len >= 0 && len <= 3)
 		return (ft_basic_case(stacks, 'b', len));
 	half = 0;
-	stacks->med = ft_get_mediana(stacks->b, len);
+	stacks->med = ft_get_mediana(stacks->b, len, 1);
 	i = len;
 	ft_min_max(stacks, 'b');
 	while (i--)
@@ -87,6 +83,6 @@ int			ft_sort_b(t_ps *stacks, int len)
 			ft_rotate(stacks, 'b');
 	}
 	ft_sort_b(stacks, len - half);
-	ft_sort_a(stacks, half); 
+	ft_sort_a(stacks, half);
 	return (0);
 }

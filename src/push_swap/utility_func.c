@@ -6,7 +6,7 @@
 /*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/10 22:16:39 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:19:41 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,51 +59,49 @@ void		ft_find_dup(t_stack *stack)
 	}
 }
 
-int			ft_myatoi(char *str)
+int			ft_myatoi(char *str, t_ps *stacks)
 {
-	int n;
-	int	flag;
+	int		n;
+	char	*check;
 
-	while (ft_isspace(*str))
-		++str;
-	flag = (*str == '+' || *str == '-') ? (44 - *str++) : 1;
-	n = 0;
-	while (ft_isdigit(*str))
-	{
-		if (flag == 1 && (n * 10 + (*str - '0')) < 0)
-			ft_exit(NULL, WRONG_INPUT);
-		if (flag == -1 && (n * -10 - (*str - '0')) > 0)
-			ft_exit(NULL, WRONG_INPUT);
-		n = n * 10 + (*str++ - '0');
-	}
-	return (n * flag);
+	n = ft_atoi(str);
+	if (!(check = ft_itoa(n)))
+		ft_exit(&stacks, MALLOC_FAILURE);
+	if (ft_strcmp(str, check))
+		ft_exit(&stacks, WRONG_INPUT);
+	ft_strdel(&check);
+	return (n);
 }
 
-int			ft_get_mediana(t_stack *stack, int len)
+int			ft_get_mediana(t_stack *begin, int len, int flag)
 {
-	int		*arr;
-	int		i;
+	t_stack	*first;
+	t_stack	*second;
+	int		temp_len;
+	int		count;
+	int		med;
 
-	if (!(arr = ft_memalloc(sizeof(int) * len)))
-		ft_exit(NULL, MALLOC_FAILURE);
-	i = 0;
-	while (i < len)
+	first = begin;
+	while (first)
 	{
-		arr[i] = stack->num;
-		stack = stack->next;
-		++i;
+		count = 0;
+		temp_len = len;
+		med = first->num;
+		second = begin;
+		while (second && temp_len--)
+		{
+			if (med > second->num)
+				++count;
+			second = second->next;
+		}
+		if (count == len / 2 + flag)
+			break ;
+		first = first->next;
 	}
-	if (!(ft_merge_sort(arr, len)))
-		ft_exit(NULL, MALLOC_FAILURE);
-//	if (len % 2 == 0)
-//		i = arr[len / 2];
-//	else
-		i = arr[len / 2 + 1];
-	free(arr);
-	return (i);
+	return (med);
 }
 
-int		ft_check_sort(t_stack *stack_a, int len)
+int			ft_check_sort(t_stack *stack_a, int len)
 {
 	int n;
 	int i;

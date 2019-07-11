@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/06 13:05:19 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 20:04:43 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_sort_three_on_stack(t_ps *stacks, char cur)
 	return (1);
 }
 
-int	ft_sort_three(t_ps *stacks, char cur)
+int			ft_sort_three(t_ps *stacks, char cur)
 {
 	t_stack	*a;
 

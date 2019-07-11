@@ -6,21 +6,11 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/10 23:50:25 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 19:45:17 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int		ft_len_arr(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		++i;
-	return (i);
-}
 
 static void		ft_read_instructions(t_ps *stacks)
 {
@@ -30,7 +20,7 @@ static void		ft_read_instructions(t_ps *stacks)
 	line = NULL;
 	while ((n = get_next_line(0, &line)) > 0)
 	{
-		if (!(ft_operation(stacks, line, 0)))
+		if (!(ft_operation(stacks, line)))
 			ft_exit(&stacks, WRONG_OPERATION);
 		free(line);
 	}
@@ -40,36 +30,28 @@ static void		ft_read_instructions(t_ps *stacks)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	ft_free_stacks(&stacks);
 }
 
 int				main(int argc, char **argv)
 {
 	t_ps		*stacks;
-	char		**ar;
+	char		**av;
 	int			i;
 
-	if (!(stacks = (t_ps*)malloc(sizeof(t_ps))))
-		ft_exit(NULL, MALLOC_FAILURE);
-	stacks->a = NULL;
-	stacks->b = NULL;
-	stacks->i = 0;
-	argc == 1 ? exit(0) : 0;
+	argc == 1 ? ft_exit(NULL, USAGE_C) : 0;
 	if (argc == 2)
 	{
-		if (!(ar = ft_strsplit_sp(argv[1])))
+		if (!(av = ft_strsplit_sp(argv[1])))
 			ft_exit(&stacks, MALLOC_FAILURE);
 	}
 	else
-		ar = &argv[1];
-	if (!(ft_check_arg(argc - 1, ar)))
-		ft_exit(&stacks, WRONG_INPUT);
-	i = argc != 2 ? argc - 2 : ft_len_arr(ar) - 1;
-	if (!(stacks->line = ft_strnew(i * i)))
-		ft_exit(&stacks, MALLOC_FAILURE);
-	while (i >= 0)
-		ft_addnew(&stacks->a, ft_myatoi(ar[i--]));
-	ft_find_dup(stacks->a);
+		av = &argv[1];
+	if (!(ft_check_arg(argc - 1, av)))
+		ft_exit(NULL, WRONG_INPUT);
+	i = argc != 2 ? argc - 2 : ft_len_arr(av) - 1;
+	stacks = ft_init_stacks(i, av);
 	ft_read_instructions(stacks);
+	ft_free_stacks(&stacks);
+	argc == 2 ? ft_free_arr(av) : 0;
 	return (0);
 }
