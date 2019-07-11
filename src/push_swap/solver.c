@@ -27,9 +27,9 @@ void		ft_solver(t_stack **stack_a)
 		ft_exit(&stacks, MALLOC_FAILURE);
 	if (!ft_check_sort(stacks->a, len))
 	{
-//		if (len <= 100)
-//			ft_insert_sort(stacks, len);
-//		else
+		if (len <= 100)
+			ft_insert_sort(stacks, len);
+		else
 			ft_sort_a(stacks, len);
 	}
 	ft_post_processing(stacks);

@@ -57,14 +57,12 @@ int		ft_keep_three(t_ps *stacks)
 	while (len > 3)
 	{
 		stacks->med = ft_get_mediana(stacks->a, len);
-		ft_min_max(stacks, 'a');
 		while (len--)
 		{
 			if (stacks->a->num <= stacks->med)
 			{
 				ft_push(stacks, 'b');
-				stacks->b->num == stacks->min ? ft_rotate(stacks, 'b') : 0;
-				ft_min_max(stacks, 'a');
+				stacks->b->num <= stacks->med / 2 ? ft_rotate(stacks, 'b') : 0;
 			}
 			else
 				ft_rotate(stacks, 'a');
