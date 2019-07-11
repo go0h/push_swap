@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 20:34:04 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:42:34 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void		ft_solver(int ac, char **av)
 
 	stacks = ft_init_stacks(ac, av);
 	len = ft_get_length_stack(stacks->a);
-	if (!ft_check_sort(stacks->a, len))
+	if (!ft_check_sort(stacks->a, len, 0))
 	{
-		if (len == 3)
-			ft_sort_three(stacks, 'a');
+		if (len < 6)
+			ft_case_six(stacks, 'a', len);
 		else if (len <= 150)
 			ft_select_sort(stacks, len);
 		else

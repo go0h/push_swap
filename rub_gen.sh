@@ -1,4 +1,4 @@
-ARG=`ruby -e "puts (-2147483648..2147483647).to_a.shuffle.join(' ')"`
+ARG=`ruby -e "puts (0..4).to_a.shuffle.join(' ')"`
 #./push_swap $ARG 
 #./push_swap $ARG | ./checker $ARG
 #./push_swap $ARG

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 20:19:38 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:41:29 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			ft_find_dup(t_stack *stack);
 
 int				ft_myatoi(char *str, t_ps *stacks);
 
-int				ft_check_sort(t_stack *stack_a, int len);
+int				ft_check_sort(t_stack *stack_a, int len, int rev);
 
 /*
 ** algorithm functions
@@ -116,6 +116,8 @@ int				ft_get_mediana(t_stack *stack, int len, int flag);
 int				ft_basic_case(t_ps *stacks, char cur, int len);
 
 int				ft_sort_three(t_ps *stacks, char cur);
+
+int				ft_case_six(t_ps *stacks, char cur, int len);
 
 void			ft_solver(int ac, char **av);
 

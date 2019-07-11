@@ -6,7 +6,7 @@
 /*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 20:19:41 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:40:43 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int			ft_get_mediana(t_stack *begin, int len, int flag)
 	return (med);
 }
 
-int			ft_check_sort(t_stack *stack_a, int len)
+int			ft_check_sort(t_stack *stack_a, int len, int flag)
 {
 	int n;
 	int i;
@@ -111,7 +111,9 @@ int			ft_check_sort(t_stack *stack_a, int len)
 	stack_a = stack_a->next;
 	while (stack_a && i < len)
 	{
-		if (n >= stack_a->num)
+		if (n >= stack_a->num && !flag)
+			return (0);
+		if (n <= stack_a->num && flag)
 			return (0);
 		n = stack_a->num;
 		stack_a = stack_a->next;
