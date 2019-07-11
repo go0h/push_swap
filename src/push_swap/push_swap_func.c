@@ -26,7 +26,6 @@ int		ft_swap(t_ps *stacks, char cur)
 	}
 	stacks->line[stacks->i] = cur == 'a' ? SA : SB;
 	stacks->i += 1;
-//	ft_printstacks(stacks->a, stacks->b);
 	return (1);
 }
 
@@ -41,7 +40,6 @@ int		ft_push(t_ps *stacks, char cur)
 {
 	t_stack *temp;
 
-//	ft_printf("push %c\n", cur);
 	temp = cur == 'a' ? stacks->b : stacks->a;
 	if (cur == 'a' && stacks->b)
 	{
@@ -65,7 +63,6 @@ int		ft_rotate(t_ps *stacks, char cur)
 	t_stack *temp;
 	int		first_num;
 
-//	ft_printf("rorate %c\n", cur);
 	temp = cur == 'a' ? stacks->a : stacks->b;
 	if (temp)
 	{
@@ -79,7 +76,6 @@ int		ft_rotate(t_ps *stacks, char cur)
 	}
 	stacks->line[stacks->i] = cur == 'a' ? RA : RB;
 	stacks->i += 1;
-//	ft_printstacks(stacks->a, stacks->b);
 	return (1);
 }
 

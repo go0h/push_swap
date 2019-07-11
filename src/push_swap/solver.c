@@ -33,11 +33,7 @@ void		ft_solver(t_stack **stack_a)
 			ft_sort_a(stacks, len);
 	}
 	ft_post_processing(stacks);
-/*	if (ft_check_sort(stacks->a, len))
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
-*/	ft_free_stacks(&stacks);
+	ft_free_stacks(&stacks);
 }
 
 int			ft_sort_a(t_ps *stacks, int len)
