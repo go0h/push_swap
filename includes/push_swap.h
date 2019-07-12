@@ -18,18 +18,21 @@
 
 # define SA 1
 # define SB 2
-# define PA 3
-# define PB 4
-# define RA 5
-# define RB 6
-# define RRA 7
-# define RRB 8
+# define SS 3
+# define PA 4
+# define PB 5
+# define RA 6
+# define RB 7
+# define RR 8
+# define RRA 9
+# define RRB 10
+# define RRR 11
 
-# define USAGE_P 9
-# define USAGE_C 10
-# define WRONG_INPUT 11
-# define READ_ERROR 12
-# define WRONG_OPERATION 13
+# define USAGE_P 3
+# define USAGE_C 4
+# define WRONG_INPUT 5
+# define READ_ERROR 6
+# define WRONG_OPERATION 7
 
 typedef struct	s_stack
 {
@@ -123,6 +126,7 @@ void			ft_solver(int ac, char **av);
 
 int				ft_min_max(t_ps *stacks, char cur);
 
+void			ft_better_case(int ac, char)
 /*
 ** quick sort algorithm functions
 */

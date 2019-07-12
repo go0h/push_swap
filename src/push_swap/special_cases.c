@@ -113,7 +113,7 @@ static int	ft_sort_rev_three(t_ps *stacks, char cur)
 
 int			ft_case_six(t_ps *stacks, char cur, int l)
 {
-	int		half;
+	int		h;
 
 	if (l == 1)
 		return (1);
@@ -122,7 +122,7 @@ int			ft_case_six(t_ps *stacks, char cur, int l)
 	else if (l == 3)
 		return (ft_sort_three(stacks, cur));
 	h = 0;
-	stacks->med = ft_get_mediana(stacks->a, len, 0);
+	stacks->med = ft_get_mediana(stacks->a, l, 0);
 	while (l--)
 	{
 		if (stacks->a->num <= stacks->med)
