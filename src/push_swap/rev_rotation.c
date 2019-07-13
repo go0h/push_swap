@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 15:27:08 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/10 23:36:49 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:06:31 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_rev_rotate(t_ps *stacks, char cur)
 	}
 	stacks->line[stacks->i] = cur == 'a' ? RRA : RRB;
 	stacks->i += 1;
+	stacks->v ? ft_print_stack(stacks) : 0;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:02:38 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/10 23:36:35 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:06:24 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		ft_swap(t_ps *stacks, char cur)
 	}
 	stacks->line[stacks->i] = cur == 'a' ? SA : SB;
 	stacks->i += 1;
+	stacks->v ? ft_print_stack(stacks) : 0;
 	return (1);
 }
 
@@ -55,6 +56,7 @@ int		ft_push(t_ps *stacks, char cur)
 	}
 	stacks->line[stacks->i] = cur == 'a' ? PA : PB;
 	stacks->i += 1;
+	stacks->v ? ft_print_stack(stacks) : 0;
 	return (1);
 }
 
@@ -76,6 +78,7 @@ int		ft_rotate(t_ps *stacks, char cur)
 	}
 	stacks->line[stacks->i] = cur == 'a' ? RA : RB;
 	stacks->i += 1;
+	stacks->v ? ft_print_stack(stacks) : 0;
 	return (1);
 }
 

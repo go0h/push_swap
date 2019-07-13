@@ -6,7 +6,7 @@
 #    By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2019/07/11 17:38:36 by astripeb         ###   ########.fr        #
+#    Updated: 2019/07/13 12:00:18 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,12 @@ NAME_LIB = libftprintf.a
 MLIB = libmake
 
 SOURCES_C = checker.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c utility_func2.c operations.c ft_exit.c
+			utility_func.c utility_func2.c operations.c ft_exit.c \
+			visual.c
 
 SOURCES_S = push_swap.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c utility_func2.c ft_exit.c \
-			solver.c ft_select_sort.c special_cases.c post_processing.c
+			utility_func.c utility_func2.c ft_exit.c solver.c \
+			ft_select_sort.c special_cases.c post_processing.c visual.c
 
 SRCS_C = $(addprefix $(SRC_PATH)/,$(SOURCES_C))
 

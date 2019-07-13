@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:06:09 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 21:20:31 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/12 22:05:51 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	ft_keep_three(t_ps *stacks)
 			if (stacks->a->num <= stacks->med)
 			{
 				ft_push(stacks, 'b');
-				stacks->b->num < stacks->med / 2 ? ft_rotate(stacks, 'b') : 0;
+				stacks->b->num <= stacks->med / 2 ? ft_rotate(stacks, 'b') : 0;
 			}
 			else
 				ft_rotate(stacks, 'a');

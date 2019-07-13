@@ -1,6 +1,6 @@
-ARG=`ruby -e "puts (0..4).to_a.shuffle.join(' ')"`
+ARG=`ruby -e "puts (0..44).to_a.shuffle.join(' ')"`
 #./push_swap $ARG 
-#./push_swap $ARG | ./checker $ARG
+./push_swap $ARG | ./checker $ARG
 #./push_swap $ARG
 
 #valgrind --leak-check=full ./push_swap $ARG
@@ -14,5 +14,5 @@ ARG=`ruby -e "puts (0..4).to_a.shuffle.join(' ')"`
 #ARG="796 997 128 306 761 700 660 747 684 802"
 #ARG="39 970 59 328 159 425 42 298 601 359"
 #ARG="840 79 396 161 298 442 652 986 139 297 291 663 690 639 777"
-./push_swap $ARG 
+#./push_swap $ARG 
 #./push_swap $ARG | ./checker $ARG

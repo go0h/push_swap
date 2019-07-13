@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 21:41:29 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:04:49 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include "libftprintf.h"
+# include "visual.h"
 
 # define SA 1
 # define SB 2
@@ -50,6 +51,7 @@ typedef struct	s_ps
 	int			max;
 	int			min;
 	int			count;
+	char		v;
 }				t_ps;
 
 void			ft_exit(t_ps **stacks, int err);
@@ -126,7 +128,6 @@ void			ft_solver(int ac, char **av);
 
 int				ft_min_max(t_ps *stacks, char cur);
 
-void			ft_better_case(int ac, char)
 /*
 ** quick sort algorithm functions
 */
@@ -150,5 +151,12 @@ void			ft_post_processing(t_ps *stacks);
 int				ft_operation(t_ps *stacks, char *oper);
 
 void			ft_free_stacks(t_ps **to_del);
+
+
+/*
+** visual stacks functions
+*/
+
+void			ft_print_stack(t_ps *stacks);
 
 #endif

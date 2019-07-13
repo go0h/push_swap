@@ -6,11 +6,12 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 21:42:14 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:15:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "visual.h"
 
 static void		ft_read_instructions(t_ps *stacks)
 {
@@ -18,6 +19,7 @@ static void		ft_read_instructions(t_ps *stacks)
 	char	*line;
 
 	line = NULL;
+	ft_clear_screen();
 	while ((n = get_next_line(0, &line)) > 0)
 	{
 		if (!(ft_operation(stacks, line)))
@@ -51,6 +53,7 @@ int				main(int argc, char **argv)
 		ft_exit(NULL, WRONG_INPUT);
 	i = argc != 2 ? argc - 2 : ft_len_arr(av) - 1;
 	stacks = ft_init_stacks(i, av);
+	stacks->v = 1;
 	ft_read_instructions(stacks);
 	ft_free_stacks(&stacks);
 	argc == 2 ? ft_free_arr(av) : 0;
