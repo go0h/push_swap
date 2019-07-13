@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/12 21:56:18 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/13 22:23:41 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void		ft_solver(int ac, char **av)
 	{
 		if (len < 6)
 			ft_case_six(stacks, 'a', len);
-		else if (len <= 150)
-			ft_select_sort(stacks, len);
+//		else if (len <= 150)
+//			ft_select_sort(stacks, len);
 		else
 			ft_sort_a(stacks, len);
 	}

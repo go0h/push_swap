@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/13 12:04:49 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/13 22:29:13 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,4 +159,9 @@ void			ft_free_stacks(t_ps **to_del);
 
 void			ft_print_stack(t_ps *stacks);
 
+void			ft_print_frame(t_ps *stacks);
+
+void			ft_print_one(t_stack *stack, int len, int x);
+
+void			ft_print_line(int len, char c);
 #endif

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/13 12:15:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/13 22:20:18 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void		ft_read_instructions(t_ps *stacks)
 	char	*line;
 
 	line = NULL;
-	ft_clear_screen();
+	stacks->v ? (ft_clear_screen(), ft_print_frame(stacks)) : 0;
+	stacks->v ? (ft_printf("\e[1m")) : 0;
 	while ((n = get_next_line(0, &line)) > 0)
 	{
 		if (!(ft_operation(stacks, line)))
@@ -28,11 +29,13 @@ static void		ft_read_instructions(t_ps *stacks)
 	}
 	if (n < 0)
 		ft_exit(&stacks, READ_ERROR);
+	stacks->v ? ft_printf("\e[21m") : 0;
+	stacks->v ? ft_go_to_x_y(ft_get_length_stack(stacks->a) + 5, 5) : 0;
 	if (!stacks->b &&
 		ft_check_sort(stacks->a, ft_get_length_stack(stacks->a), 0))
-		ft_printf("OK\n");
+		ft_printf("%c{green}OK{eoc}\n", stacks->v ? '\n' : '\0');
 	else
-		ft_printf("KO\n");
+		ft_printf("%c{red}KO{eoc}\n", stacks->v ? '\n' : '\0');
 }
 
 int				main(int argc, char **argv)
