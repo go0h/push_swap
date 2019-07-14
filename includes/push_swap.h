@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/13 22:29:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/14 14:10:53 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define WRONG_INPUT 5
 # define READ_ERROR 6
 # define WRONG_OPERATION 7
+# define WRONG_OPTION 8
 
 typedef struct	s_stack
 {
@@ -53,6 +54,8 @@ typedef struct	s_ps
 	int			count;
 	char		v;
 }				t_ps;
+
+int				ft_options(int ac, char **av);
 
 void			ft_exit(t_ps **stacks, int err);
 
@@ -161,7 +164,7 @@ void			ft_print_stack(t_ps *stacks);
 
 void			ft_print_frame(t_ps *stacks);
 
-void			ft_print_one(t_stack *stack, int len, int x);
+void			ft_print_one(t_ps *stacks, int len, int x, char cur);
 
-void			ft_print_line(int len, char c);
+void			ft_print_line(int len, char c, int v);
 #endif
