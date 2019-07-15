@@ -25,8 +25,7 @@ MLIB = libmake
 
 SOURCES_C = checker.c list_func.c push_swap_func.c rev_rotation.c \
 			utility_func.c utility_func2.c operations.c ft_exit.c \
-			ft_select_sort.c special_cases.c visual.c visual2.c \
-			options.c
+			ft_select_sort.c special_cases.c visual.c visual2.c
 
 SOURCES_S = push_swap.c list_func.c push_swap_func.c rev_rotation.c \
 			utility_func.c utility_func2.c ft_exit.c solver.c \
@@ -41,7 +40,7 @@ OBJ_C = $(addprefix $(OBJ_PATH)/,$(SOURCES_C:.c=.o))
 
 OBJ_S = $(addprefix $(OBJ_PATH)/,$(SOURCES_S:.c=.o))
 
-all: $(NAME_C) $(NAME_S)
+all: lib $(NAME_C) $(NAME_S)
 
 $(NAME_S): bin $(OBJ_S)
 	$(CC) $(CFLAGS) $(OBJ_S)  -L./ -lftprintf -o $(NAME_S)
@@ -56,14 +55,11 @@ bin:
 	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
-	$(CC) $(CFLAGS) -g -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 norm:
 	@norminette $(SRC_PATH)
 	@norminette $(INC_PATH)
-
-gen:
-	$(CC) $(CFLAGS) -L./ -lftprintf $(SRC_PATH)/num_gen.c -o num_gen
 
 clean:
 	@make -f $(MLIB) clean

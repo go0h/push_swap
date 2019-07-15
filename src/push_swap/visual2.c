@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "visual.h"
 
-void	ft_print_stack(t_ps *stacks)
+void			ft_print_stack(t_ps *stacks)
 {
 	int len;
 
@@ -21,22 +20,22 @@ void	ft_print_stack(t_ps *stacks)
 	ft_print_one(stacks, len, 3, 'a');
 	ft_print_one(stacks, len, WIDTH_SCREEN / 2 + 8, 'b');
 	ft_go_to_x_y(len + 1, 0);
-	ft_print_line(10, ' ');
+	ft_print_line(10, ' ', 0);
 	ft_go_to_x_y(len + 1, 2);
 	usleep(50000);
 }
 
-void	ft_print_head(void)
+static void		ft_print_head(void)
 {
 	ft_printf("|");
-	ft_print_line(WIDTH_SCREEN + 7, '-');
+	ft_print_line(WIDTH_SCREEN + 7, '-', 0);
 	ft_printf("|\n|");
-	ft_print_line(WIDTH_SCREEN / 2 + 4, ' ');
+	ft_print_line(WIDTH_SCREEN / 2 + 4, ' ', 0);
 	ft_printf("|");
-	ft_print_line(WIDTH_SCREEN / 2 + 2, ' ');
+	ft_print_line(WIDTH_SCREEN / 2 + 2, ' ', 0);
 	ft_printf("|\n");
 	ft_printf("|");
-	ft_print_line(WIDTH_SCREEN + 7, '-');
+	ft_print_line(WIDTH_SCREEN + 7, '-', 0);
 	ft_printf("|\n");
 	ft_go_to_x_y(2, WIDTH_SCREEN / 4);
 	ft_printf("STACK A");
@@ -44,7 +43,7 @@ void	ft_print_head(void)
 	ft_printf("STACK B");
 }
 
-void	ft_print_frame(t_ps *stacks)
+void			ft_print_frame(t_ps *stacks)
 {
 	int len;
 	int i;
@@ -57,13 +56,13 @@ void	ft_print_frame(t_ps *stacks)
 	while (i++ < len)
 	{
 		ft_printf("|");
-		ft_print_line(WIDTH_SCREEN / 2 + 4, ' ');
+		ft_print_line(WIDTH_SCREEN / 2 + 4, ' ', 0);
 		ft_printf("|");
-		ft_print_line(WIDTH_SCREEN / 2 + 2, ' ');
+		ft_print_line(WIDTH_SCREEN / 2 + 2, ' ', 0);
 		ft_printf("|\n");
 	}
 	ft_printf("|");
-	ft_print_line(WIDTH_SCREEN + 7, '-');
+	ft_print_line(WIDTH_SCREEN + 7, '-', 0);
 	ft_printf("|\n");
 	ft_print_stack(stacks);
 }

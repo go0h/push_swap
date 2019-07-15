@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "visual.h"
 
 void	ft_clear_screen(void)
 {
@@ -57,7 +56,7 @@ void	ft_print_one(t_ps *stacks, int len, int x, char cur)
 		stacks->v == 2 ? write(1, "\e[0m", 5) : 0;
 	}
 	while (i < len)
-	{	
+	{
 		ft_go_to_x_y(i, x);
 		ft_print_line(0, ' ', 0);
 		++i;

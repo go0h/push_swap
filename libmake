@@ -53,17 +53,17 @@ OBJ += $(addprefix $(OBJ_PATH)/,$(SOURCES_PRINTF:.c=.o))
 all: $(NAME)
 
 $(NAME): bin $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 bin:
 	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o:$(LIBFT_PATH)/%.c
-	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
 
 $(OBJ_PATH)/%.o:$(PRINTF_PATH)/%.c
-	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) $(LFLAGS) -o $@ -c $<
 norm:
 	norminette $(LIBFT_PATH)
 	norminette $(PRINTF_PATH)

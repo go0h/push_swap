@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include "libftprintf.h"
-# include "visual.h"
 
 # define SA 1
 # define SB 2
@@ -36,6 +35,10 @@
 # define WRONG_OPERATION 7
 # define WRONG_OPTION 8
 
+# define WIDTH_SCREEN 160
+# define HEIGHT_SCREEN 48
+# define CLEAR_SCREEN "\e[1;1H\e[2J"
+
 typedef struct	s_stack
 {
 	int				num;
@@ -54,8 +57,6 @@ typedef struct	s_ps
 	int			count;
 	char		v;
 }				t_ps;
-
-int				ft_options(int ac, char **av);
 
 void			ft_exit(t_ps **stacks, int err);
 
@@ -160,6 +161,10 @@ void			ft_free_stacks(t_ps **to_del);
 ** visual stacks functions
 */
 
+void			ft_clear_screen(void);
+
+void			ft_go_to_x_y(int x, int y);
+
 void			ft_print_stack(t_ps *stacks);
 
 void			ft_print_frame(t_ps *stacks);
@@ -167,4 +172,5 @@ void			ft_print_frame(t_ps *stacks);
 void			ft_print_one(t_ps *stacks, int len, int x, char cur);
 
 void			ft_print_line(int len, char c, int v);
+
 #endif
