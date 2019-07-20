@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/14 14:10:53 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/20 23:53:48 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct	s_ps
 	int			med;
 	int			max;
 	int			min;
-	int			count;
 	char		v;
 }				t_ps;
 
@@ -144,7 +143,7 @@ int				ft_sort_b(t_ps *stacks, int len);
 ** selection sort algrithm functions
 */
 
-void			ft_select_sort(t_ps *stacks, int len);
+void			ft_select_sort(t_ps *stacks);
 
 /*
 ** post algorithm functions

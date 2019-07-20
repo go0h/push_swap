@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/14 14:36:58 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/20 23:56:07 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ static void		ft_read_instructions(t_ps *stacks)
 	stacks->v ? ft_printf("\e[5m") : 0;
 	if (!stacks->b &&
 		ft_check_sort(stacks->a, ft_get_length_stack(stacks->a), 0))
-		ft_printf("%sOK\n\e[0m", stacks->v == 2 ? "\e[32m" : "");
+		ft_printf("%sOK\n", stacks->v == 2 ? "\e[32m" : "");
 	else
-		ft_printf("%sKO\n\e[0m", stacks->v == 2 ? "\e[31m" : "");
+		ft_printf("%sKO\n", stacks->v == 2 ? "\e[31m" : "");
+	stacks->v ? ft_printf("\e[0m") : 0;
 }
 
 int				main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 22:18:08 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/14 14:04:30 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/20 21:59:51 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			ft_print_stack(t_ps *stacks)
 	ft_go_to_x_y(len + 1, 0);
 	ft_print_line(10, ' ', 0);
 	ft_go_to_x_y(len + 1, 2);
-	usleep(50000);
+	usleep(100000);
 }
 
 static void		ft_print_head(void)

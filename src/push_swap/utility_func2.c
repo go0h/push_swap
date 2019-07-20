@@ -6,7 +6,7 @@
 /*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 11:47:04 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/13 12:05:11 by astripeb         ###   ########.fr       */
+/*   Updated: 2019/07/20 22:31:35 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_ps	*ft_init_stacks(int ac, char **av)
 	stacks->b = NULL;
 	stacks->i = 0;
 	stacks->line = NULL;
-	stacks->count = 0;
 	stacks->v = 0;
 	while (ac >= 0)
 		ft_addnew(&stacks->a, ft_myatoi(av[ac--], stacks));
