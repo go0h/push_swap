@@ -6,68 +6,88 @@
 #    By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2019/07/14 10:51:18 by astripeb         ###   ########.fr        #
+#    Updated: 2020/01/03 16:56:25 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME_S = push_swap
-NAME_C = checker
+GREEN           := \033[0;32m
+RED             := \033[0;31m
+RESET           := \033[0m
 
-CC = gcc
-OBJ_PATH = ./obj_p
-INC_PATH = ./includes
-SRC_PATH = ./src/push_swap
-CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -I $(INC_PATH)
+PUSH_SWAP		:= push_swap
+CHECKER			:= checker
 
-NAME_LIB = libftprintf.a
-MLIB = libmake
+INC_DIR 		:= ./includes
+SRC_DIR 		:= ./src
+OBJ_DIR			:= ./obj
+LIBFT_DIR		:= ./libft
 
-SOURCES_C = checker.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c utility_func2.c operations.c ft_exit.c \
-			ft_select_sort.c special_cases.c visual.c visual2.c
+CC 				:= gcc
+CFLAGS 			:= -Wall -Wextra -Werror
+LFLAGS 			:= -I $(INC_DIR) -I $(LIBFT_DIR)/inc
+LIB				:= -L $(LIBFT_DIR) -lft
 
-SOURCES_S = push_swap.c list_func.c push_swap_func.c rev_rotation.c \
-			utility_func.c utility_func2.c ft_exit.c solver.c \
-			ft_select_sort.c special_cases.c post_processing.c visual.c \
-			visual2.c
+LIBFT	 		:= libft.a
 
-SRCS_C = $(addprefix $(SRC_PATH)/,$(SOURCES_C))
+HEADERS			:= push_swap.h
 
-SRCS_S = $(addprefix $(SRC_PATH)/,$(SOURCES_S))
+SRCS			:= list_func.c push_swap_func.c rev_rotation.c utility_func.c\
+				utility_func2.c ft_exit.c ft_select_sort.c special_cases.c\
+				visual.c visual2.c
 
-OBJ_C = $(addprefix $(OBJ_PATH)/,$(SOURCES_C:.c=.o))
+SRC_C 			:= checker.c operations.c
 
-OBJ_S = $(addprefix $(OBJ_PATH)/,$(SOURCES_S:.c=.o))
+SRC_S 			:= push_swap.c solver.c post_processing.c
 
-all: lib $(NAME_C) $(NAME_S)
+OBJS			:= $(SRCS:.c=.o)
+OBJ_C			:= $(SRC_C:.c=.o)
+OBJ_S			:= $(SRC_S:.c=.o)
 
-$(NAME_S): bin $(OBJ_S)
-	$(CC) $(CFLAGS) $(OBJ_S)  -L./ -lftprintf -o $(NAME_S)
+vpath %.c $(SRC_DIR)
+vpath %.o $(OBJ_DIR)
+vpath %.h $(INC_DIR)
+vpath %.a $(LIBFT_DIR)
 
-$(NAME_C): bin $(OBJ_C)
-	$(CC) $(CFLAGS) $(OBJ_C) -L./ -lftprintf -o $(NAME_C)
+all: lib $(PUSH_SWAP) $(CHECKER)
+
+$(PUSH_SWAP): $(LIBFT) $(OBJS) $(OBJ_S) $(HEADERS)
+	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_DIR)/, $(OBJS) $(OBJ_S)) $(LIB) -o $@
+	echo "$(GREEN)$@ was created ✅$(RESET)"
+
+$(CHECKER): $(LIBFT) $(OBJS) $(OBJ_C) $(HEADERS)
+	$(CC) $(CFLAGS) $(LFLAGS) $(addprefix $(OBJ_DIR)/, $(OBJS) $(OBJ_C)) $(LIB) -o $@
+	echo "$(GREEN)$@ was created ✅$(RESET)"
 
 lib:
-	@make -f $(MLIB)
+	$(MAKE) -C $(LIBFT_DIR)
 
-bin:
-	@mkdir -p $(OBJ_PATH)
+$(OBJS):%.o:%.c $(HEADERS) | $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(LFLAGS) -o $(OBJ_DIR)/$@ -c $<
+	echo "$(GREEN)$@ was created$(RESET)"
 
-$(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+$(OBJ_S):%.o:%.c $(HEADERS) | $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(LFLAGS) -o $(OBJ_DIR)/$@ -c $<
+	echo "$(GREEN)$@ was created$(RESET)"
 
-norm:
-	@norminette $(SRC_PATH)
-	@norminette $(INC_PATH)
+$(OBJ_C):%.o:%.c $(HEADERS) | $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(LFLAGS) -o $(OBJ_DIR)/$@ -c $<
+	echo "$(GREEN)$@ was created$(RESET)"
+
+$(OBJ_DIR):
+	mkdir -p $@
 
 clean:
-	@make -f $(MLIB) clean
-	@rm -rf $(OBJ_PATH)
+	$(MAKE) $@ -C $(LIBFT_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@make -f $(MLIB) fclean
-	@rm -rf $(OBJ_PATH)
-	@rm -rf $(NAME_S) $(NAME_C)
+	$(MAKE) $@ -C $(LIBFT_DIR)
+	rm -rf $(PUSH_SWAP) $(CHECKER)
 
 re: fclean all
+
+.SILENT: all clean fclean re $(PUSH_SWAP) $(CHECKER) $(OBJ_DIR) $(OBJS)\
+		$(OBJ_S) $(OBJ_C) lib
+
+.PHONY: all clean fclean re $(PUSH_SWAP) $(CHECKER) $(OBJ_DIR) $(OBJS)\
+		$(OBJ_S) $(OBJ_C) lib
