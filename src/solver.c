@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 10:49:52 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/20 23:53:13 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/02 17:16:42 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_sort_a(t_ps *stacks, int len)
 	ft_min_max(stacks, 'a');
 	while (i--)
 	{
-		if (stacks->a->num <= stacks->med)
+		if (NUM(stacks->a) <= stacks->med)
 			half += ft_push(stacks, 'b');
 		else
 			ft_rotate(stacks, 'a');
@@ -71,9 +71,9 @@ int			ft_sort_b(t_ps *stacks, int len)
 	ft_min_max(stacks, 'b');
 	while (i--)
 	{
-		if (stacks->b->num >= stacks->med)
+		if (NUM(stacks->b) >= stacks->med)
 			half += ft_push(stacks, 'a');
-		else if (stacks->b->num == stacks->min)
+		else if (NUM(stacks->b) == stacks->min)
 		{
 			len -= ft_push(stacks, 'a');
 			ft_rotate(stacks, 'a');

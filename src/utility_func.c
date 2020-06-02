@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:37:31 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/11 21:40:43 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/02 17:23:54 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ int			ft_check_arg(int ac, char **av)
 	return (1);
 }
 
-void		ft_find_dup(t_stack *stack)
+void		ft_find_dup(t_list *stack)
 {
 	int		n;
 	int		count;
-	t_stack *first;
-	t_stack	*second;
+	t_list	*first;
+	t_list	*second;
 
 	first = stack;
 	while (first)
 	{
 		count = 0;
-		n = first->num;
+		n = NUM(first);
 		second = stack;
 		while (second)
 		{
-			if (n == second->num)
+			if (n == NUM(second))
 				++count;
 			second = second->next;
 		}
@@ -73,10 +73,10 @@ int			ft_myatoi(char *str, t_ps *stacks)
 	return (n);
 }
 
-int			ft_get_mediana(t_stack *begin, int len, int flag)
+int			ft_get_mediana(t_list *begin, int len, int flag)
 {
-	t_stack	*first;
-	t_stack	*second;
+	t_list	*first;
+	t_list	*second;
 	int		temp_len;
 	int		count;
 	int		med;
@@ -86,11 +86,11 @@ int			ft_get_mediana(t_stack *begin, int len, int flag)
 	{
 		count = 0;
 		temp_len = len;
-		med = first->num;
+		med = NUM(first);
 		second = begin;
 		while (second && temp_len--)
 		{
-			if (med > second->num)
+			if (med > NUM(second))
 				++count;
 			second = second->next;
 		}
@@ -101,21 +101,21 @@ int			ft_get_mediana(t_stack *begin, int len, int flag)
 	return (med);
 }
 
-int			ft_check_sort(t_stack *stack_a, int len, int flag)
+int			ft_check_sort(t_list *stack_a, int len, int flag)
 {
 	int n;
 	int i;
 
 	i = 0;
-	n = stack_a->num;
+	n = NUM(stack_a);
 	stack_a = stack_a->next;
 	while (stack_a && i < len)
 	{
-		if (n >= stack_a->num && !flag)
+		if (n >= NUM(stack_a) && !flag)
 			return (0);
-		if (n <= stack_a->num && flag)
+		if (n <= NUM(stack_a) && flag)
 			return (0);
-		n = stack_a->num;
+		n = NUM(stack_a);
 		stack_a = stack_a->next;
 		++i;
 	}

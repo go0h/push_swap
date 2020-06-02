@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:02:38 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/13 12:06:24 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/02 17:14:59 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int		ft_swap(t_ps *stacks, char cur)
 {
 	int		temp;
-	t_stack	*list;
+	t_list	*list;
 
 	list = cur == 'a' ? stacks->a : stacks->b;
 	if (list && list->next)
 	{
-		temp = list->num;
-		list->num = list->next->num;
-		list->next->num = temp;
+		temp = NUM(list);
+		NUM(list) = NUM(list->next);
+		NUM(list->next) = temp;
 	}
 	stacks->line[stacks->i] = cur == 'a' ? SA : SB;
 	stacks->i += 1;
@@ -39,7 +39,7 @@ int		ft_swap_two(t_ps *stacks)
 
 int		ft_push(t_ps *stacks, char cur)
 {
-	t_stack *temp;
+	t_list *temp;
 
 	temp = cur == 'a' ? stacks->b : stacks->a;
 	if (cur == 'a' && stacks->b)
@@ -62,19 +62,19 @@ int		ft_push(t_ps *stacks, char cur)
 
 int		ft_rotate(t_ps *stacks, char cur)
 {
-	t_stack *temp;
+	t_list *temp;
 	int		first_num;
 
 	temp = cur == 'a' ? stacks->a : stacks->b;
 	if (temp)
 	{
-		first_num = temp->num;
+		first_num = NUM(temp);
 		while (temp->next)
 		{
-			temp->num = temp->next->num;
+			NUM(temp) = NUM(temp->next);
 			temp = temp->next;
 		}
-		temp->num = first_num;
+		NUM(temp) = first_num;
 	}
 	stacks->line[stacks->i] = cur == 'a' ? RA : RB;
 	stacks->i += 1;

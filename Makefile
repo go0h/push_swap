@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astripeb <astripeb@student.42.fr>          +#+  +:+       +#+         #
+#    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2020/01/03 16:56:25 by astripeb         ###   ########.fr        #
+#    Updated: 2020/06/02 17:30:35 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LIBFT	 		:= libft.a
 
 HEADERS			:= push_swap.h
 
-SRCS			:= list_func.c push_swap_func.c rev_rotation.c utility_func.c\
+SRCS			:= push_swap_func.c rev_rotation.c utility_func.c\
 				utility_func2.c ft_exit.c ft_select_sort.c special_cases.c\
 				visual.c visual2.c
 

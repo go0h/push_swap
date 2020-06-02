@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:06:09 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/20 23:52:21 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/02 17:12:18 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_get_next_max(t_ps *stacks, char cur, int n)
 {
-	t_stack *first;
-	t_stack *second;
+	t_list *first;
+	t_list *second;
 	int		count;
 	int		next_max;
 
@@ -24,11 +24,11 @@ static int	ft_get_next_max(t_ps *stacks, char cur, int n)
 	while (first)
 	{
 		count = 0;
-		next_max = first->num;
+		next_max = NUM(first);
 		second = cur == 'a' ? stacks->a : stacks->b;
 		while (second)
 		{
-			count += next_max < second->num;
+			count += next_max < NUM(second);
 			second = second->next;
 		}
 		first = first->next;
@@ -40,7 +40,7 @@ static int	ft_get_next_max(t_ps *stacks, char cur, int n)
 
 static int	ft_count_to_max(t_ps *stacks, char cur)
 {
-	t_stack *temp;
+	t_list *temp;
 	int		i;
 	int		len;
 
@@ -50,7 +50,7 @@ static int	ft_count_to_max(t_ps *stacks, char cur)
 	i = 0;
 	while (temp)
 	{
-		if (temp->num == stacks->max)
+		if (NUM(temp) == stacks->max)
 			break ;
 		temp = temp->next;
 		++i;
@@ -70,10 +70,10 @@ static int	ft_keep_three(t_ps *stacks)
 		stacks->med = ft_get_mediana(stacks->a, len, 0);
 		while (len--)
 		{
-			if (stacks->a->num <= stacks->med && stacks->a->num < three)
+			if (NUM(stacks->a) <= stacks->med && NUM(stacks->a) < three)
 			{
 				ft_push(stacks, 'b');
-				ft_abs(stacks->b->num) <= ft_abs(stacks->med) / 2 ?
+				ft_abs(NUM(stacks->b)) <= ft_abs(stacks->med) / 2 ?
 					ft_rotate(stacks, 'b') : 0;
 			}
 			else
@@ -96,18 +96,18 @@ void		ft_select_sort(t_ps *stacks)
 	{
 		i = ft_count_to_max(stacks, 'b');
 		next_max = ft_get_next_max(stacks, 'b', 1);
-		while (stacks->b && stacks->b->num != stacks->max)
+		while (stacks->b && NUM(stacks->b) != stacks->max)
 		{
-			if (stacks->b->num == stacks->min || stacks->b->num == next_max)
+			if (NUM(stacks->b) == stacks->min || NUM(stacks->b) == next_max)
 			{
 				ft_push(stacks, 'a');
-				j += stacks->a->num == stacks->min ? ft_rotate(stacks, 'a') : 0;
+				j += NUM(stacks->a) == stacks->min ? ft_rotate(stacks, 'a') : 0;
 			}
 			else
 				i < 0 ? ft_rev_rotate(stacks, 'b') : ft_rotate(stacks, 'b');
 		}
 		ft_push(stacks, 'a');
-		stacks->a->num > stacks->a->next->num ? ft_swap(stacks, 'a') : 0;
+		NUM(stacks->a) > NUM(stacks->a->next) ? ft_swap(stacks, 'a') : 0;
 	}
 	while (j--)
 		ft_rev_rotate(stacks, 'a');
@@ -115,17 +115,17 @@ void		ft_select_sort(t_ps *stacks)
 
 int			ft_min_max(t_ps *stacks, char cur)
 {
-	t_stack *temp;
+	t_list *temp;
 
 	temp = cur == 'a' ? stacks->a : stacks->b;
-	temp ? stacks->max = temp->num : 0;
-	temp ? stacks->min = temp->num : 0;
+	temp ? stacks->max = NUM(temp) : 0;
+	temp ? stacks->min = NUM(temp) : 0;
 	while (temp)
 	{
-		if (temp->num > stacks->max)
-			stacks->max = temp->num;
-		if (temp->num < stacks->min)
-			stacks->min = temp->num;
+		if (NUM(temp) > stacks->max)
+			stacks->max = NUM(temp);
+		if (NUM(temp) < stacks->min)
+			stacks->min = NUM(temp);
 		temp = temp->next;
 	}
 	return (1);

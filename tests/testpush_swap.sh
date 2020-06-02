@@ -10,9 +10,9 @@ ERRORS=errorstempfile.txt
 # unchanging variables
 YESNO=0;
 A=;
-RED='\033[0;31m';
-WHITE='\033[1m';
-CLN='\033[0m';
+RED="\033[0;31m";
+WHITE="\033[1m";
+CLN="\033[0m";
 RM=/bin/rm;
 RANGENUM=1000
 NUMMAX=5000
