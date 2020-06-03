@@ -6,7 +6,7 @@
 #    By: astripeb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 17:19:04 by astripeb          #+#    #+#              #
-#    Updated: 2020/06/02 17:30:35 by astripeb         ###   ########.fr        #
+#    Updated: 2020/06/03 20:44:26 by astripeb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,5 +89,4 @@ re: fclean all
 .SILENT: all clean fclean re $(PUSH_SWAP) $(CHECKER) $(OBJ_DIR) $(OBJS)\
 		$(OBJ_S) $(OBJ_C) lib
 
-.PHONY: all clean fclean re $(PUSH_SWAP) $(CHECKER) $(OBJ_DIR) $(OBJS)\
-		$(OBJ_S) $(OBJ_C) lib
+.PHONY: all clean fclean re lib

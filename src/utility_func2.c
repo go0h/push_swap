@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 11:47:04 by astripeb          #+#    #+#             */
-/*   Updated: 2020/06/02 17:43:21 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/03 20:37:41 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_ps	*ft_init_stacks(int ac, char **av)
 	return (stacks);
 }
 
-void	ft_del_content(void * content, size_t size)
+void	ft_del_content(void *content, size_t size)
 {
 	ft_bzero(content, size);
 	free(content);

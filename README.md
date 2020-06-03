@@ -1,8 +1,6 @@
 # push_swap
 Because Swap_push isn't as natural
 
-<a href="https://github.com/go0h/push_swap/blob/master/push_swap.en.pdf">SUBJECT<a>
-
 Суть проекта состоит в том, чтобы отсортировать массив, с помошью двух стектов используя лишь 11 операций:
 1. SA - поменять местами первые два элемента в Стеке А.
 2. SB - поменять местами первые два элемента в Стеке В.

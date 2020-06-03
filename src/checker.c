@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 18:21:24 by astripeb          #+#    #+#             */
-/*   Updated: 2019/07/20 23:56:07 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/03 20:38:44 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ static void		ft_read_instructions(t_ps *stacks)
 	char	*line;
 
 	line = NULL;
-	stacks->v ? (ft_print_frame(stacks), ft_printf("\e[1m")) : 0;
+	if (stacks->v)
+	{
+		ft_print_frame(stacks);
+		ft_printf("\e[1m");
+	}
 	while ((n = get_next_line(0, &line)) > 0)
 	{
 		if (!(ft_operation(stacks, line)))

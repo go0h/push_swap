@@ -6,14 +6,14 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:15:12 by astripeb          #+#    #+#             */
-/*   Updated: 2020/06/02 17:46:50 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/03 20:44:41 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libftprintf.h"
+# include "libft.h"
 
 enum
 {
@@ -141,7 +141,7 @@ int				ft_operation(t_ps *stacks, char *oper);
 
 void			ft_free_stacks(t_ps **to_del);
 
-void			ft_del_content(void * content, size_t size);
+void			ft_del_content(void *content, size_t size);
 
 /*
 ** visual stacks functions

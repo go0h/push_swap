@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:02:38 by astripeb          #+#    #+#             */
-/*   Updated: 2020/06/02 17:14:59 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/03 20:37:09 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_push(t_ps *stacks, char cur)
 
 int		ft_rotate(t_ps *stacks, char cur)
 {
-	t_list *temp;
+	t_list	*temp;
 	int		first_num;
 
 	temp = cur == 'a' ? stacks->a : stacks->b;

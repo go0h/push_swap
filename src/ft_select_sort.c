@@ -6,7 +6,7 @@
 /*   By: astripeb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:06:09 by astripeb          #+#    #+#             */
-/*   Updated: 2020/06/02 17:12:18 by astripeb         ###   ########.fr       */
+/*   Updated: 2020/06/03 20:41:47 by astripeb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_get_next_max(t_ps *stacks, char cur, int n)
 {
-	t_list *first;
-	t_list *second;
+	t_list	*first;
+	t_list	*second;
 	int		count;
 	int		next_max;
 
@@ -40,7 +40,7 @@ static int	ft_get_next_max(t_ps *stacks, char cur, int n)
 
 static int	ft_count_to_max(t_ps *stacks, char cur)
 {
-	t_list *temp;
+	t_list	*temp;
 	int		i;
 	int		len;
 
